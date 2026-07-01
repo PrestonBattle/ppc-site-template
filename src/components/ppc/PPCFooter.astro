@@ -1,0 +1,392 @@
+---
+interface Props {
+  practiceName: string;
+  phone: string;
+  phoneLink: string;
+  address: string;
+  mapLink: string;
+  mapEmbedUrl?: string;
+  hours: { day: string; hours: string }[];
+  bookingLink: string;
+  logoSrc: string;
+  logoAlt: string;
+  footerLogoSrc?: string;
+  footerLogoAlt?: string;
+  disclaimer: string;
+  footer?: {
+    layout?: "logo-info-map" | "logo-map-info" | "info-logo-map" | "stacked";
+    showMap?: boolean;
+    bgColor?: string;
+    accentColor?: string;
+    phoneColor?: string;
+  };
+}
+
+const {
+  practiceName,
+  phone,
+  phoneLink,
+  address,
+  mapLink,
+  mapEmbedUrl,
+  hours,
+  bookingLink,
+  logoSrc,
+  logoAlt,
+  footerLogoSrc,
+  footerLogoAlt,
+  disclaimer,
+  footer = {},
+} = Astro.props;
+
+const {
+  layout = "logo-info-map",
+  showMap = true,
+  bgColor = "#1a3a5c",
+  accentColor = "#00BFA6",
+  phoneColor = "#00BFA6",
+} = footer;
+
+const activeLogo = footerLogoSrc || logoSrc;
+const activeLogoAlt = footerLogoAlt || logoAlt;
+const isStacked = layout === "stacked";
+
+// Column order based on layout
+const colOrder = {
+  "logo-info-map": showMap ? ["brand", "info", "map"] : ["brand", "info"],
+  "logo-map-info": showMap ? ["brand", "map", "info"] : ["brand", "info"],
+  "info-logo-map": showMap ? ["info", "brand", "map"] : ["info", "brand"],
+  stacked: showMap ? ["brand", "info", "map"] : ["brand", "info"],
+};
+const order = colOrder[layout] || colOrder["logo-info-map"];
+---
+
+<footer
+  class="ppc-footer"
+  style={`
+  --footer-bg: ${bgColor};
+  --footer-accent: ${accentColor};
+  --footer-phone: ${phoneColor};
+`}
+>
+  <div class="ppc-footer-main">
+    <div class:list={`ppc-footer-inner layout-${layout}${!showMap ? " no-map" : ""}`}>
+      {
+        order.map((col) => {
+          if (col === "brand")
+            return (
+              <div class="ppc-footer-col ppc-footer-brand">
+                <a href="/">
+                  {activeLogo ? (
+                    <img src={activeLogo} alt={activeLogoAlt} class="ppc-footer-logo" />
+                  ) : (
+                    <span class="ppc-footer-logo-text">{practiceName}</span>
+                  )}
+                </a>
+                <a
+                  href={bookingLink}
+                  class="ppc-footer-schedule-btn"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Schedule Online
+                </a>
+              </div>
+            );
+
+          if (col === "info")
+            return (
+              <div class="ppc-footer-col ppc-footer-info">
+                <div class="ppc-footer-contact">
+                  <h3 class="ppc-footer-heading">Contact Us</h3>
+                  <a href={mapLink} class="ppc-footer-address" target="_blank" rel="noopener">
+                    {address}
+                  </a>
+                  <a href={phoneLink} class="ppc-footer-phone">
+                    {phone}
+                  </a>
+                </div>
+                <div class="ppc-footer-hours">
+                  <h3 class="ppc-footer-heading">Office Hours</h3>
+                  <div class="ppc-hours-list">
+                    {hours.map(({ day, hours: h }) => (
+                      <div class="ppc-hours-row">
+                        <span class="ppc-hours-day">{day}</span>
+                        <span class="ppc-hours-time">{h}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+
+          if (col === "map")
+            return (
+              <div class="ppc-footer-col ppc-footer-map">
+                {mapEmbedUrl ? (
+                  <iframe
+                    src={mapEmbedUrl}
+                    width="100%"
+                    height="250"
+                    style="border:0; border-radius: 8px;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title={`${practiceName} location map`}
+                  />
+                ) : (
+                  <a href={mapLink} class="ppc-footer-map-link" target="_blank" rel="noopener">
+                    View on Google Maps →
+                  </a>
+                )}
+              </div>
+            );
+        })
+      }
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="ppc-footer-copyright">
+    <div class="ppc-footer-copyright-inner">
+      <p>
+        © {new Date().getFullYear()}
+        {practiceName} |
+        <a href="/sitemap.html">Sitemap</a> |
+        <a href="/privacy-policy.html">Privacy Policy</a> | Site designed and maintained by <a
+          href="https://www.tntdental.com"
+          target="_blank"
+          rel="noopener">TNT Dental</a
+        >
+      </p>
+    </div>
+  </div>
+
+  {
+    disclaimer && (
+      <div class="ppc-footer-disclaimer">
+        <div class="ppc-footer-copyright-inner">
+          <p>{disclaimer}</p>
+        </div>
+      </div>
+    )
+  }
+</footer>
+
+<style lang="pcss" is:global>
+  @layer page-sections {
+    .ppc-footer {
+      background: var(--footer-bg, #1a3a5c);
+    }
+
+    .ppc-footer-main {
+      padding: var(--spacing-2xl) var(--spacing-lg);
+    }
+
+    .ppc-footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: var(--spacing-2xl);
+      align-items: start;
+      grid-template-columns: 200px 1fr 300px;
+    }
+
+    .ppc-footer-inner.layout-stacked {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .ppc-footer-inner.layout-stacked .ppc-footer-brand {
+      align-items: center;
+    }
+
+    .ppc-footer-inner.layout-stacked .ppc-footer-info {
+      flex-direction: column;
+    }
+
+    .ppc-footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-lg);
+    }
+
+    .ppc-footer-logo {
+      max-width: 200px;
+      height: auto;
+    }
+
+    .ppc-footer-logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .ppc-footer-schedule-btn {
+      display: inline-block;
+      background: var(--footer-accent, #00BFA6);
+      color: white;
+      padding: var(--spacing-sm) var(--spacing-xl);
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .ppc-footer-schedule-btn:hover {
+      opacity: 0.85;
+    }
+
+    .ppc-footer-info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+
+    .ppc-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-2xl);
+  align-items: start;
+  grid-template-columns: 200px 1fr 300px;
+}
+
+.ppc-footer-inner.no-map {
+  grid-template-columns: 200px 1fr;
+}
+
+    .ppc-footer-heading {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 0 0 var(--spacing-sm);
+      padding-bottom: var(--spacing-xs);
+      border-bottom: 2px solid var(--footer-accent, #00BFA6);
+    }
+
+    .ppc-footer-address {
+      display: block;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .ppc-footer-address:hover {
+      color: white;
+    }
+
+    .ppc-footer-phone {
+      display: block;
+      color: var(--footer-phone, #00BFA6);
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .ppc-footer-phone:hover {
+      opacity: 0.85;
+    }
+
+    .ppc-hours-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ppc-hours-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 0.95rem;
+}
+
+.ppc-hours-day {
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  min-width: 130px;
+  font-weight: 400;
+}
+
+.ppc-hours-time {
+  color: white;
+  font-weight: 400;
+}
+
+    .ppc-footer-map-link {
+      color: var(--footer-accent, #00BFA6);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .ppc-footer-map-link:hover {
+      text-decoration: underline;
+    }
+
+    .ppc-footer-copyright {
+      background: rgba(0,0,0,0.25);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .ppc-footer-copyright-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .ppc-footer-copyright p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      margin: 0;
+    }
+
+    .ppc-footer-copyright a {
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+
+    .ppc-footer-copyright a:hover {
+      color: white;
+    }
+
+    .ppc-footer-disclaimer {
+      background: rgba(0,0,0,0.15);
+      padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    .ppc-footer-disclaimer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin: 0 auto;
+      line-height: 1.7;
+      max-width: 900px;
+    }
+
+    @media (max-width: 900px) {
+      .ppc-footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+      .ppc-footer-map {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .ppc-footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+</style>

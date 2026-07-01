@@ -1,0 +1,200 @@
+---
+interface Props {
+  practiceName: string;
+  phone: string;
+  phoneLink: string;
+  bookingLink: string;
+  address: string;
+  logoSrc: string;
+  logoAlt: string;
+  announcementBar?: string[];
+  bookBtnText?: string;
+}
+
+const {
+  practiceName,
+  phone,
+  phoneLink,
+  bookingLink,
+  address,
+  logoSrc,
+  logoAlt,
+  announcementBar = ["New Patients Welcome", "Same-Day Appointments Available"],
+  bookBtnText = "Schedule Online",
+} = Astro.props;
+---
+
+<header class="ppc-header">
+  <div class="ppc-top-bar">
+    <div class="ppc-top-bar-inner">
+      <div class="ppc-contact">
+        <a href={phoneLink} class="ppc-phone">{phone}</a>
+        <span class="ppc-address">{address}</span>
+      </div>
+      <a href="/" class="ppc-logo-link">
+        {
+          logoSrc ? (
+            <img src={logoSrc} alt={logoAlt} class="ppc-logo" />
+          ) : (
+            <span class="ppc-logo-text">{practiceName}</span>
+          )
+        }
+      </a>
+      <div class="ppc-top-cta">
+        <a href={bookingLink} class="ppc-book-btn" target="_blank" rel="noopener">
+          {bookBtnText}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ppc-announcement-bar">
+    <div class="ppc-announcement-inner">
+      {
+        announcementBar.map((item, i) => (
+          <>
+            <span class="ppc-announcement-item">{item}</span>
+            {i < announcementBar.length - 1 && <span class="ppc-announcement-dot">•</span>}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</header>
+
+<style lang="pcss" is:global>
+  @layer page-sections {
+    .ppc-site .ppc-phone {
+  color: var(--ppc-phone-color) !important;
+}
+
+.ppc-site .ppc-book-btn {
+  background: var(--ppc-btn-bg) !important;
+  color: var(--ppc-btn-text) !important;
+}
+
+.ppc-site .ppc-announcement-bar {
+  background: var(--ppc-ann-bg) !important;
+}
+
+.ppc-site .ppc-announcement-item {
+  color: var(--ppc-ann-text) !important;
+}
+    .ppc-header {
+      position: sticky;
+      top: 0;
+      z-index: 300;
+      width: 100%;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    }
+
+    .ppc-top-bar {
+      background: white;
+      padding: var(--spacing-sm) var(--spacing-lg);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .ppc-top-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .ppc-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ppc-phone {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--ppc-phone-color);
+      text-decoration: none;
+      line-height: 1;
+      &:hover { text-decoration: underline; }
+    }
+
+    .ppc-address {
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+    }
+
+    .ppc-logo-link {
+      display: flex;
+      justify-content: center;
+    }
+
+    .ppc-logo {
+      max-height: 70px;
+      width: auto;
+    }
+
+    .ppc-logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--ppc-brand);
+    }
+
+    .ppc-top-cta {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .ppc-book-btn {
+      background: var(--ppc-btn-bg);
+      color: var(--ppc-btn-text);
+      padding: var(--spacing-sm) var(--spacing-xl);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+      &:hover { opacity: 0.85; }
+    }
+
+    .ppc-announcement-bar {
+      background: var(--ppc-ann-bg);
+      padding: var(--spacing-sm) var(--spacing-lg);
+    }
+
+    .ppc-announcement-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .ppc-announcement-item {
+      color: var(--ppc-ann-text);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .ppc-announcement-dot {
+      color: var(--ppc-ann-text);
+      opacity: 0.5;
+      font-size: 0.7rem;
+    }
+
+    @media (max-width: 640px) {
+      .ppc-top-bar-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .ppc-contact { align-items: center; }
+      .ppc-top-cta { justify-content: center; }
+    }
+  }
+</style>

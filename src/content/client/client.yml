@@ -1,0 +1,87 @@
+# ============================================================================
+# CLIENT CONFIGURATION — the single source of truth for this PPC site.
+# When spinning up a new client site, this file (plus src/content/pages/index.md
+# and the images in src/assets/images) is everything you need to change.
+#
+# Every field is validated at build time (see src/content.config.ts), so a
+# typo'd color or missing field fails the build instead of shipping broken.
+# ============================================================================
+
+# --- Practice identity ------------------------------------------------------
+practiceName: Your Dental Practice
+phone: "(555) 555-5555" # phoneLink (tel:+1...) is derived automatically
+address: 123 Main Street, Your City, ST 00000
+bookingLink: "#contact" # online scheduler URL, or "#contact" to scroll to the form
+mapLink: https://maps.google.com/
+# mapEmbedUrl: https://www.google.com/maps/embed?pb=... # Google Maps "Embed a map" iframe src
+hours:
+  - day: Monday
+    hours: 9:00 am - 6:00 pm
+  - day: Tuesday
+    hours: 9:00 am - 6:00 pm
+  - day: Wednesday
+    hours: 9:00 am - 6:00 pm
+  - day: Thursday
+    hours: 9:00 am - 6:00 pm
+  - day: Friday
+    hours: 9:00 am - 2:00 pm
+
+# --- Logos -------------------------------------------------------------------
+logo:
+  src: /images/logo.svg
+  alt: Your Dental Practice logo
+# footerLogo: # optional — falls back to `logo` when omitted
+#   src: /images/logo-dark.svg
+#   alt: Your Dental Practice footer logo
+
+# --- Header ------------------------------------------------------------------
+header:
+  announcementBar:
+    - New Patients Welcome
+    - Same-Day Appointments Available
+  bookBtnText: Schedule Online
+
+# --- Theme -------------------------------------------------------------------
+# Injected as CSS variables across the whole site. Defaults below are the
+# TNT-inspired base palette (deep navy + red accent) — swap in the client's
+# brand colors here. Every value must be a hex color.
+theme:
+  brand: "#132a3e" # header top bar, dark sections
+  brandMuted: "#1e415e" # lighter companion to brand
+  brandText: "#ffffff" # text on brand-colored backgrounds
+  accent: "#e2231a" # buttons, links, highlights
+  accentText: "#ffffff" # text on accent-colored backgrounds
+  dark: "#132a3e"
+  announcementBarBg: "#132a3e"
+  announcementBarText: "#ffffff"
+  bookBtnBg: "#e2231a"
+  bookBtnText: "#ffffff"
+  phoneColor: "#e2231a" # phone number color in the header
+
+# --- Footer ------------------------------------------------------------------
+footer:
+  layout: logo-info-map # logo-info-map | logo-map-info | info-logo-map | stacked
+  showMap: true
+  bgColor: "#132a3e"
+  accentColor: "#e2231a"
+  phoneColor: "#e2231a"
+  disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
+
+# --- Calls to action -----------------------------------------------------------
+cta:
+  stickyBar: # mobile-only fixed bar at the bottom of the screen
+    enabled: true
+    callText: Call Now
+    bookText: Book Online
+
+# --- Tracking ------------------------------------------------------------------
+# Plug and play: fill in an ID and the tag loads; leave it out (or commented)
+# and nothing is injected. All are optional and independent.
+tracking:
+  # ga4MeasurementId: G-XXXXXXXXXX # Google Analytics 4
+  # gtmContainerId: GTM-XXXXXXX # Google Tag Manager (use this OR ga4 direct, usually not both)
+  # googleAdsId: AW-XXXXXXXXX # Google Ads conversion tracking
+  # metaPixelId: "000000000000000" # Meta / Facebook Pixel
+  # callTrackingSrc: //cdn.callrail.com/companies/XXXXXXXXX/XXXXXXXXXXXXXXXX/12/swap.js # CallRail dynamic number insertion
+  # clarityId: xxxxxxxxxx # Microsoft Clarity heatmaps
+  trackConversions: true # fire GA events on tel: link + booking button clicks

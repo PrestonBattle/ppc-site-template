@@ -1,0 +1,86 @@
+---
+import Analytics from "@components/ppc/Analytics.astro";
+import PPCFooter from "@components/ppc/PPCFooter.astro";
+import PPCHeader from "@components/ppc/PPCHeader.astro";
+import StickyCallBar from "@components/ppc/StickyCallBar.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getEntry } from "astro:content";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const clientEntry = await getEntry("client", "client");
+
+if (!clientEntry) {
+  throw new Error("Missing client config: expected src/content/client/client.yml");
+}
+const client = clientEntry.data;
+const { theme, header, footer, cta, tracking } = client;
+
+const cssVars = `
+  --ppc-brand:       ${theme.brand};
+  --ppc-brand-muted: ${theme.brandMuted};
+  --ppc-brand-text:  ${theme.brandText};
+  --ppc-accent:      ${theme.accent};
+  --ppc-accent-text: ${theme.accentText};
+  --ppc-dark:        ${theme.dark};
+  --ppc-ann-bg:      ${theme.announcementBarBg};
+  --ppc-ann-text:    ${theme.announcementBarText};
+  --ppc-btn-bg:      ${theme.bookBtnBg};
+  --ppc-btn-text:    ${theme.bookBtnText};
+  --ppc-phone-color: ${theme.phoneColor};
+`;
+---
+
+<BaseLayout title={title} description={description}>
+  <Analytics slot="head" {...tracking} />
+
+  <div class="ppc-site" style={cssVars}>
+    <PPCHeader
+      practiceName={client.practiceName}
+      phone={client.phone}
+      phoneLink={client.phoneLink}
+      bookingLink={client.bookingLink}
+      address={client.address}
+      logoSrc={client.logo.src}
+      logoAlt={client.logo.alt}
+      announcementBar={header.announcementBar}
+      bookBtnText={header.bookBtnText}
+    />
+
+    <slot />
+
+    <PPCFooter
+      practiceName={client.practiceName}
+      phone={client.phone}
+      phoneLink={client.phoneLink}
+      address={client.address}
+      mapLink={client.mapLink}
+      mapEmbedUrl={client.mapEmbedUrl}
+      hours={client.hours}
+      bookingLink={client.bookingLink}
+      logoSrc={client.logo.src}
+      logoAlt={client.logo.alt}
+      footerLogoSrc={client.footerLogo?.src}
+      footerLogoAlt={client.footerLogo?.alt}
+      disclaimer={footer.disclaimer}
+      footer={footer}
+    />
+
+    {
+      cta.stickyBar.enabled && (
+        <StickyCallBar
+          phone={client.phone}
+          phoneLink={client.phoneLink}
+          bookingLink={client.bookingLink}
+          callText={cta.stickyBar.callText}
+          bookText={cta.stickyBar.bookText}
+        />
+      )
+    }
+  </div>
+</BaseLayout>

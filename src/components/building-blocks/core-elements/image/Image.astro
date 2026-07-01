@@ -1,0 +1,199 @@
+---
+import { getProviderForUrl } from "unpic";
+import AstroImage from "./AstroImage.astro";
+import UnpicImage from "./UnpicImage.astro";
+
+const {
+  source,
+  alt,
+  sizes = "(min-width: 30em) 50vw, 100vw",
+  widths = [400, 600, 800, 1200, 1600],
+  rounded = false,
+  priority = false,
+  aspectRatio = null,
+  positionVertical = "center",
+  positionHorizontal = "center",
+  background = false,
+  editable = true,
+  class: className,
+  "data-prop-src": customDataPropSrc,
+  "data-prop-alt": customDataPropAlt,
+  "data-editable": customDataEditable,
+  _component,
+  ...htmlAttributes
+} = Astro.props;
+
+const hasValidSrc = source && typeof source === "string" && source.trim() !== "";
+
+if (!_component && !hasValidSrc) {
+  return;
+}
+
+const provider = hasValidSrc ? getProviderForUrl(source) : false;
+const isExternalCDN = provider !== false;
+
+const commonProps = {
+  alt: alt || "",
+};
+
+const dataAttributes = editable
+  ? {
+      "data-editable": customDataEditable || "image",
+      "data-prop-src": customDataPropSrc || "source",
+      "data-prop-alt": customDataPropAlt || "alt",
+    }
+  : {};
+
+const positionClass = `position-${positionVertical}-${positionHorizontal}`;
+---
+
+<div
+  class:list={[
+    "image",
+    aspectRatio && "ratio",
+    aspectRatio && `ratio-${aspectRatio}`,
+    positionClass,
+    rounded && "rounded",
+    background && "background",
+    className,
+  ]}
+  {...htmlAttributes}
+>
+  {
+    isExternalCDN ? (
+      <UnpicImage
+        {...commonProps}
+        {...dataAttributes}
+        source={source}
+        sizes={sizes}
+        widths={widths}
+        priority={priority}
+        aspectRatio={aspectRatio}
+        positionVertical={positionVertical}
+        positionHorizontal={positionHorizontal}
+      />
+    ) : (
+      <AstroImage
+        {...commonProps}
+        {...dataAttributes}
+        source={source}
+        sizes={sizes}
+        widths={widths}
+        priority={priority}
+        aspectRatio={aspectRatio}
+        positionVertical={positionVertical}
+        positionHorizontal={positionHorizontal}
+      />
+    )
+  }
+</div>
+
+<style lang="pcss" is:global>
+  @layer components {
+    .image {
+      display: block;
+      overflow: hidden;
+      margin-top: var(--spacing-lg);
+
+      &.ratio-square {
+        aspect-ratio: var(--ratio-square);
+      }
+
+      &.ratio-landscape {
+        aspect-ratio: var(--ratio-landscape);
+      }
+
+      &.ratio-portrait {
+        aspect-ratio: var(--ratio-portrait);
+      }
+
+      &.ratio-widescreen {
+        aspect-ratio: var(--ratio-widescreen);
+      }
+
+      &.ratio-horizontal-strip {
+        aspect-ratio: var(--ratio-horizontal-strip);
+      }
+
+      &.ratio {
+        picture {
+          height: 100%;
+        }
+
+        img {
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
+      }
+
+      &.background {
+        inset: 0;
+        position: absolute;
+        margin-top: 0;
+
+        > picture {
+          height: 100%;
+        }
+
+        > picture > img {
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+
+      picture {
+        display: block;
+        margin-block: auto;
+        width: 100%;
+      }
+
+      img {
+        display: block;
+        height: auto;
+        width: 100%;
+      }
+
+      &.position-center-center img {
+        object-position: center center;
+      }
+
+      &.position-top-center img {
+        object-position: center top;
+      }
+
+      &.position-bottom-center img {
+        object-position: center bottom;
+      }
+
+      &.position-center-left img {
+        object-position: left center;
+      }
+
+      &.position-center-right img {
+        object-position: right center;
+      }
+
+      &.position-top-left img {
+        object-position: left top;
+      }
+
+      &.position-top-right img {
+        object-position: right top;
+      }
+
+      &.position-bottom-left img {
+        object-position: left bottom;
+      }
+
+      &.position-bottom-right img {
+        object-position: right bottom;
+      }
+
+      &.rounded {
+        border-radius: var(--radius-lg);
+      }
+    }
+  }
+</style>

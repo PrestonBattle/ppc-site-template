@@ -1,0 +1,17 @@
+---
+import Components from "@components/utils/renderBlock.astro";
+import PPCLayout from "@layouts/PPCLayout.astro";
+import { getEntry } from "astro:content";
+
+const page = await getEntry("pages", "index");
+
+if (!page) {
+  throw new Error("Missing page content: expected src/content/pages/index.md");
+}
+
+const { title, description, pageSections = [] } = page.data;
+---
+
+<PPCLayout title={title} description={description}>
+  <Components contentSections={pageSections} propName="pageSections" />
+</PPCLayout>
