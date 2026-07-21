@@ -3,6 +3,5 @@
   "url": "https://example.com",
   "description": "Comprehensive dental care for the whole family. New patient specials and same-day appointments available.",
   "logoSource": "/images/logo.svg",
-  "titleFormat": "{title} | Your Dental Practice",
-  "twitterHandle": ""
+  "titleFormat": "{title} | Your Dental Practice"
 }
