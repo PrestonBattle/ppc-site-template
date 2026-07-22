@@ -1,0 +1,97 @@
+---
+import CustomSection from "@builders/custom-section/CustomSection.astro";
+import Heading from "@core-elements/heading/Heading.astro";
+import SimpleText from "@core-elements/simple-text/SimpleText.astro";
+import Text from "@core-elements/text/Text.astro";
+import { insuranceLogos } from "@data/insuranceLogos";
+
+const {
+  eyebrow = "", heading = "", subtext = "",
+  insurance = {},
+  plusManyMore = true,
+  note = "", logoHeight = 56,
+  colorScheme = "inherit", backgroundColor, paddingVertical = "4xl",
+  class: className, _component, ...htmlAttributes
+} = Astro.props;
+
+const activeLogos = Object.entries(insurance)
+  .filter(([, enabled]) => enabled === true)
+  .map(([key]) => {
+    const logo = insuranceLogos[key as keyof typeof insuranceLogos];
+    if (!logo) console.warn(`InsuranceBlock: unknown insurance key "${key}"`);
+    return logo;
+  })
+  .filter(Boolean);
+---
+
+<CustomSection
+  class:list={["logo-strip", "insurance-block", className]}
+  maxContentWidth="xl"
+  paddingHorizontal="lg"
+  paddingVertical={paddingVertical}
+  colorScheme={colorScheme}
+  backgroundColor={backgroundColor}
+  {...htmlAttributes}
+>
+  {eyebrow && <SimpleText class="eyebrow" data-prop="eyebrow">{eyebrow}</SimpleText>}
+  {heading && <Heading level="h2" size="lg" data-prop="heading">{heading}</Heading>}
+  <Text class="subtext" data-prop="subtext" text={subtext} />
+
+  {(activeLogos.length > 0 || plusManyMore) && (
+    <ul class="logo-strip-row" style={`--logo-strip-height: ${logoHeight}px`}>
+      {activeLogos.map((logo) => (
+        <li class="logo-strip-item">
+          <img src={logo.src} alt={logo.alt} loading="lazy" />
+        </li>
+      ))}
+      {plusManyMore && <li class="logo-strip-item plus-more">PLUS MANY MORE!</li>}
+    </ul>
+  )}
+
+  {note && <Text class="logo-strip-note" data-prop="note" text={note} />}
+</CustomSection>
+
+<style lang="pcss" is:global>
+  @layer page-sections {
+    .insurance-block .logo-strip-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--spacing-2xl);
+      padding: 0;
+      margin-top: var(--spacing-2xl);
+      list-style: none;
+    }
+
+    .insurance-block .logo-strip-item {
+      flex: 0 0 auto;
+      list-style: none;
+    }
+
+    .insurance-block .logo-strip-item img {
+      display: block;
+      width: auto;
+      max-width: 180px;
+      height: var(--logo-strip-height, 56px);
+      object-fit: contain;
+    }
+
+    .insurance-block .logo-strip-item.plus-more {
+      height: var(--logo-strip-height, 56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--ppc-brand);
+    }
+
+    .insurance-block .logo-strip-note {
+      margin-top: var(--spacing-2xl);
+      font-size: 0.9rem;
+      text-align: center;
+      opacity: 0.8;
+    }
+  }
+</style>

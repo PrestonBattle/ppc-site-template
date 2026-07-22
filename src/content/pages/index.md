@@ -91,6 +91,31 @@ pageSections:
     colorScheme: default
     backgroundColor: base
 
+  # ----------------------------------------------------------- INSURANCE
+  # ----------------------------------------------------------- INSURANCE
+  - _component: page-sections/info-blocks/insurance-block
+    heading: Dental Insurance Welcome
+    subtext: >-
+      If you have dental insurance, you'll be able to get the most out of your
+      benefits when you visit us! We're proudly in-network with major PPO
+      plans, including Cigna and Delta Dental Premier. We also offer an
+      in-house membership plan, flexible financing, and even specials
+      throughout the year. No matter what treatment you need, we can make
+      paying for it convenient and hassle-free.
+    insurance:
+      aetna: true
+      careington: true
+      deltaDentalPremier: true
+      cigna: true
+      unitedHealthcare: true
+      bcbs: true
+      principal: true
+      sunLife: true
+    plusManyMore: true
+    note: "Note: If you do not see your plan, do not worry. Call. We welcome other plans."
+    colorScheme: default
+    backgroundColor: surface
+
   # ----------------------------------------------------------- TESTIMONIAL
   - _component: page-sections/people/testimonial-section
     eyebrow: Top-Rated on Google
