@@ -1,5 +1,4 @@
 ---
-import Component from "@components/utils/renderBlock.astro";
 import Image from "@core-elements/image/Image.astro";
 
 const {
@@ -70,13 +69,7 @@ if (!htmlAttributes.id && label) {
         maxContentWidth && `max-width-${maxContentWidth}`,
       ]}
     >
-      <slot>
-        {
-          contentSections && (
-            <Component contentSections={contentSections} propName="contentSections" />
-          )
-        }
-      </slot>
+      <slot />
     </div>
   </div>
 </section>
