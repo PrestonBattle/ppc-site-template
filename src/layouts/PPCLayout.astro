@@ -21,19 +21,42 @@ if (!clientEntry) {
 const client = clientEntry.data;
 const { theme, header, footer, cta, tracking } = client;
 
-const cssVars = `
-  --ppc-brand:       ${theme.brand};
-  --ppc-brand-muted: ${theme.brandMuted};
-  --ppc-brand-text:  ${theme.brandText};
-  --ppc-accent:      ${theme.accent};
-  --ppc-accent-text: ${theme.accentText};
-  --ppc-dark:        ${theme.dark};
-  --ppc-ann-bg:      ${theme.announcementBarBg};
-  --ppc-ann-text:    ${theme.announcementBarText};
-  --ppc-btn-bg:      ${theme.bookBtnBg};
-  --ppc-btn-text:    ${theme.bookBtnText};
-  --ppc-phone-color: ${theme.phoneColor};
-`;
+const varMap: Record<string, string | undefined> = {
+  "--ppc-brand":            theme.brand,
+  "--ppc-brand-text":       theme.brandText,
+  "--ppc-accent":           theme.accent,
+  "--ppc-accent-text":      theme.accentText,
+  "--ppc-brand-muted":      theme.brandMuted,
+  "--ppc-brand-subtle":     theme.brandSubtle,
+  "--ppc-dark":             theme.dark,
+  "--ppc-link":             theme.link,
+  "--ppc-link-hover":       theme.linkHover,
+  "--ppc-bg":               theme.bg,
+  "--ppc-bg-surface":       theme.bgSurface,
+  "--ppc-bg-muted":         theme.bgMuted,
+  "--ppc-bg-accent":        theme.bgAccent,
+  "--ppc-bg-highlight":     theme.bgHighlight,
+  "--ppc-text":             theme.text,
+  "--ppc-text-strong":      theme.textStrong,
+  "--ppc-text-muted":       theme.textMuted,
+  "--ppc-text-inverse":     theme.textInverse,
+  "--ppc-border":           theme.border,
+  "--ppc-border-inputs":    theme.borderInputs,
+  "--ppc-border-strong":    theme.borderStrong,
+  "--ppc-border-subtle":    theme.borderSubtle,
+  "--ppc-ann-bg":           theme.announcementBg,
+  "--ppc-ann-text":         theme.announcementText,
+  "--ppc-hero-bg":          theme.heroBg,
+  "--ppc-hero-text":        theme.heroText,
+  "--ppc-btn-bg":           theme.bookBtnBg ?? theme.accent,
+  "--ppc-btn-text":         theme.bookBtnText ?? theme.accentText,
+  "--ppc-phone-color":      theme.phoneColor ?? theme.accent,
+};
+
+const cssVars = Object.entries(varMap)
+  .filter(([, val]) => Boolean(val))
+  .map(([key, val]) => `${key}: ${val};`)
+  .join(" ");
 ---
 
 <BaseLayout title={title} description={description}>

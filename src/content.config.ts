@@ -71,17 +71,45 @@ const clientSchema = z
     /* --- Theme (CSS variables injected site-wide) --- */
     theme: z
       .object({
+        /* ---- Preset ---- */
+        preset: z.enum(["default"]).default("default"),
+
+        /* ---- Core brand — always used ---- */
         brand: hexColor.default("#132a3e"),
-        brandMuted: hexColor.default("#1e415e"),
         brandText: hexColor.default("#ffffff"),
         accent: hexColor.default("#e2231a"),
         accentText: hexColor.default("#ffffff"),
-        dark: hexColor.default("#132a3e"),
-        announcementBarBg: hexColor.default("#132a3e"),
-        announcementBarText: hexColor.default("#ffffff"),
-        bookBtnBg: hexColor.default("#e2231a"),
-        bookBtnText: hexColor.default("#ffffff"),
-        phoneColor: hexColor.default("#e2231a"),
+
+        /* ---- Secondary brand — commonly used ---- */
+        announcementBg: hexColor.optional(),
+        announcementText: hexColor.optional(),
+        heroBg: hexColor.optional(),
+        heroText: hexColor.optional(),
+
+        /* ---- Advanced overrides — all optional ---- */
+        brandMuted: hexColor.optional(),
+        brandSubtle: hexColor.optional(),
+        dark: hexColor.optional(),
+        link: hexColor.optional(),
+        linkHover: hexColor.optional(),
+        bg: hexColor.optional(),
+        bgSurface: hexColor.optional(),
+        bgMuted: hexColor.optional(),
+        bgAccent: hexColor.optional(),
+        bgHighlight: hexColor.optional(),
+        text: hexColor.optional(),
+        textStrong: hexColor.optional(),
+        textMuted: hexColor.optional(),
+        textInverse: hexColor.optional(),
+        border: hexColor.optional(),
+        borderInputs: hexColor.optional(),
+        borderStrong: hexColor.optional(),
+        borderSubtle: hexColor.optional(),
+
+        /* ---- Component-specific (kept for backward compat) ---- */
+        bookBtnBg: hexColor.optional(),
+        bookBtnText: hexColor.optional(),
+        phoneColor: hexColor.optional(),
       })
       .default({}),
 

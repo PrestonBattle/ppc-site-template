@@ -1,0 +1,100 @@
+_inputs:
+  theme.preset:
+    type: select
+    comment: Overall aesthetic — light or dark base
+    options:
+      values:
+        - default
+        - dark
+
+  theme.brand:
+    type: color
+    comment: Primary brand color — headers and dark sections
+  theme.brandText:
+    type: color
+    comment: Text color on brand-colored backgrounds
+  theme.accent:
+    type: color
+    comment: Accent color — CTAs, buttons, links
+  theme.accentText:
+    type: color
+    comment: Text color on accent-colored backgrounds
+
+  theme.announcementBg:
+    type: color
+    comment: (optional) Announcement bar background — defaults to brand
+  theme.announcementText:
+    type: color
+    comment: (optional) Announcement bar text — defaults to brandText
+  theme.heroBg:
+    type: color
+    comment: (optional) Hero section background — defaults to page background
+  theme.heroText:
+    type: color
+    comment: (optional) Hero section text color — defaults to page text
+
+  theme.brandMuted:
+    type: color
+    comment: (advanced) Lighter companion to brand
+  theme.brandSubtle:
+    type: color
+    comment: (advanced) Even lighter brand variant
+  theme.link:
+    type: color
+    comment: (advanced) Link color — defaults to accent
+  theme.linkHover:
+    type: color
+    comment: (advanced) Link hover color
+  theme.bg:
+    type: color
+    comment: (advanced) Page background — default white
+  theme.bgSurface:
+    type: color
+    comment: (advanced) Alternating section background
+  theme.bgMuted:
+    type: color
+    comment: (advanced) Muted section background
+  theme.text:
+    type: color
+    comment: (advanced) Body text color
+  theme.textStrong:
+    type: color
+    comment: (advanced) Heading text color
+  theme.textMuted:
+    type: color
+    comment: (advanced) Secondary/muted text color
+  theme.border:
+    type: color
+    comment: (advanced) Default border color
+
+_groups:
+  - heading: Overall Style
+    inputs:
+      - theme.preset
+  - heading: Brand Colors
+    inputs:
+      - theme.brand
+      - theme.brandText
+      - theme.accent
+      - theme.accentText
+  - heading: Section Colors (optional)
+    collapsed: true
+    inputs:
+      - theme.announcementBg
+      - theme.announcementText
+      - theme.heroBg
+      - theme.heroText
+  - heading: Advanced Overrides
+    collapsed: true
+    inputs:
+      - theme.brandMuted
+      - theme.brandSubtle
+      - theme.link
+      - theme.linkHover
+      - theme.bg
+      - theme.bgSurface
+      - theme.bgMuted
+      - theme.text
+      - theme.textStrong
+      - theme.textMuted
+      - theme.border
