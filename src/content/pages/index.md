@@ -8,9 +8,9 @@ pageSections:
     subtext: >-
       Comprehensive dental care for the whole family. New patient specials
       available. Call us today to schedule.
-    imageSource: /src/assets/images/placeholder-hero.jpg
+    imageSource: /src/assets/images/index-meet.webp
     imageAlt: Our dental office
-    imageAspectRatio: none
+    imageAspectRatio: portrait
     buttonSections:
       - _component: building-blocks/core-elements/button
         text: Book Appointment
