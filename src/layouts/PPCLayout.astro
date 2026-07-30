@@ -6,9 +6,6 @@ import StickyCallBar from "@components/ppc/StickyCallBar.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getEntry } from "astro:content";
 
-<script>
-  import "../scripts/register-editables.ts";
-</script>
 
 interface Props {
   title: string;
@@ -63,6 +60,7 @@ const cssVars = Object.entries(varMap)
   .join(" ");
 ---
 
+
 <BaseLayout title={title} description={description}>
   <Analytics slot="head" {...tracking} />
 
@@ -111,3 +109,7 @@ const cssVars = Object.entries(varMap)
     }
   </div>
 </BaseLayout>
+
+<script>
+  import "../scripts/register-editables.ts";
+</script>
