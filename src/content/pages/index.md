@@ -1,54 +1,49 @@
 ---
 _schema: default
 title: New Patient Special
-description: >-
-  Comprehensive dental care for the whole family. New patient specials and
-  same-day appointments available.
 pageSections:
-  # ---------------------------------------------------------------- HERO
   - _component: page-sections/heroes/hero-split
     eyebrow: New Patients Welcome • Same-Day Appointments Available
     heading: Your City's Top-Rated Dental Experts
     subtext: >-
       Comprehensive dental care for the whole family. New patient specials
       available. Call us today to schedule.
+    imageSource: /src/assets/images/placeholder-hero.jpg
+    imageAlt: Our dental office
+    imageAspectRatio: none
     buttonSections:
       - _component: building-blocks/core-elements/button
         text: Book Appointment
         hideText: false
-        link: "#contact"
+        link: '#contact'
         iconName: ''
         iconPosition: before
         variant: primary
         size: md
       - _component: building-blocks/core-elements/button
-        text: "(555) 555-5555"
+        text: (555) 555-5555
         hideText: false
-        link: "tel:+15555555555"
+        link: tel:+15555555555
         iconName: ''
         iconPosition: before
         variant: secondary
         size: md
-    imageSource: /src/assets/images/placeholder-hero.jpg
-    imageAlt: Our dental office
     reverse: false
     colorScheme: default
     backgroundColor: base
-
-  # ------------------------------------------------------- WHY CHOOSE US
   - _component: page-sections/features/feature-grid
     eyebrow: Why Choose Us
     heading: 3 Great Reasons to Choose Us
     subtext: ''
-    gap: xl
+    gap: ''
     minItemWidth: 280
     maxItemWidth: 360
     features:
       - _component: page-sections/features/feature-grid/feature-item
         title: New Patient Special
         description: >-
-          New patients receive a special offer on their first visit. Ask us
-          for details when you call.
+          New patients receive a special offer on their first visit. Ask us for
+          details when you call.
         iconName: bolt
         iconColor: blue
       - _component: page-sections/features/feature-grid/feature-item
@@ -68,40 +63,38 @@ pageSections:
     colorScheme: default
     backgroundColor: surface
     align: center
-
-  # ---------------------------------------------------- YOUR FIRST VISIT
   - _component: page-sections/features/feature-split
     eyebrow: Your First Visit
     heading: What Happens During Your First Visit
     subtext: >-
-      We take time to get to know you and understand your dental needs. Here
-      is what you can expect when you visit us for the first time.
+      We take time to get to know you and understand your dental needs. Here is
+      what you can expect when you visit us for the first time.
     buttonSections:
       - _component: building-blocks/core-elements/button
         text: Book Your First Visit
         hideText: false
-        link: "#contact"
+        link: '#contact'
         iconName: ''
         iconPosition: before
         variant: primary
         size: md
     imageSource: /src/assets/images/placeholder-office.jpg
     imageAlt: Doctor with patient
+    imageAspectRatio: portrait
+    imageRounded: true
     reverse: true
     colorScheme: default
     backgroundColor: base
-
-  # ----------------------------------------------------------- INSURANCE
-  # ----------------------------------------------------------- INSURANCE
   - _component: page-sections/info-blocks/insurance-block
+    eyebrow: ''
     heading: Dental Insurance Welcome
     subtext: >-
       If you have dental insurance, you'll be able to get the most out of your
-      benefits when you visit us! We're proudly in-network with major PPO
-      plans, including Cigna and Delta Dental Premier. We also offer an
-      in-house membership plan, flexible financing, and even specials
-      throughout the year. No matter what treatment you need, we can make
-      paying for it convenient and hassle-free.
+      benefits when you visit us! We're proudly in-network with major PPO plans,
+      including Cigna and Delta Dental Premier. We also offer an in-house
+      membership plan, flexible financing, and even specials throughout the
+      year. No matter what treatment you need, we can make paying for it
+      convenient and hassle-free.
     insurance:
       aetna: true
       careington: true
@@ -112,25 +105,29 @@ pageSections:
       principal: true
       sunLife: true
     plusManyMore: true
-    note: "Note: If you do not see your plan, do not worry. Call. We welcome other plans."
+    note: >-
+      Note: If you do not see your plan, do not worry. Call. We welcome other
+      plans.
+    logoHeight: 56
     colorScheme: default
     backgroundColor: surface
-
-  # ----------------------------------------------------------- TESTIMONIAL
+    paddingVertical: 4xl
   - _component: page-sections/people/testimonial-section
-    eyebrow: Top-Rated on Google
-    heading: What Our Patients Say
     text: >-
       The team made my visit a breeze. From the first call to post-treatment,
       they were friendly, efficient, and caring.
     authorName: Happy Patient
     authorDescription: Verified Google Review
+    authorImage: /src/assets/images/placeholder-team.jpg
+    alignX: center
+    maxContentWidth: xl
+    paddingHorizontal: xl
+    paddingVertical: sm
     colorScheme: default
     backgroundColor: surface
-
-  # -------------------------------------------------------- CONTACT FORM
+    eyebrow: Top-Rated on Google
+    heading: What Our Patients Say
   - _component: page-sections/ctas/cta-form
-    id: contact
     heading: Request Your Appointment
     subtext: >-
       Fill out the form below and our team will reach out to confirm your
@@ -156,12 +153,15 @@ pageSections:
         text: Request Appointment
         variant: primary
         size: md
+        iconPosition: before
+        hideText: false
+        disabled: false
     imageSource: /src/assets/images/placeholder-team.jpg
     imageAlt: Our friendly team
+    reverse: false
     colorScheme: default
     backgroundColor: base
-
-  # ---------------------------------------------------------- FINAL CTA
+    id: contact
   - _component: page-sections/ctas/cta-center
     heading: Ready to Book Your Appointment?
     subtext: >-
@@ -171,15 +171,15 @@ pageSections:
       - _component: building-blocks/core-elements/button
         text: Book Appointment
         hideText: false
-        link: "#contact"
+        link: '#contact'
         iconName: ''
         iconPosition: before
         variant: primary
         size: md
       - _component: building-blocks/core-elements/button
-        text: "(555) 555-5555"
+        text: (555) 555-5555
         hideText: false
-        link: "tel:+15555555555"
+        link: tel:+15555555555
         iconName: ''
         iconPosition: before
         variant: tertiary
@@ -187,4 +187,7 @@ pageSections:
     colorScheme: contrast
     backgroundColor: surface
     rounded: false
+description: >-
+  Comprehensive dental care for the whole family. New patient specials and
+  same-day appointments available.
 ---

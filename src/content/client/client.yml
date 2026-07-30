@@ -1,19 +1,8 @@
-# ============================================================================
-# CLIENT CONFIGURATION — the single source of truth for this PPC site.
-# When spinning up a new client site, this file (plus src/content/pages/index.md
-# and the images in src/assets/images) is everything you need to change.
-#
-# Every field is validated at build time (see src/content.config.ts), so a
-# typo'd color or missing field fails the build instead of shipping broken.
-# ============================================================================
-
-# --- Practice identity ------------------------------------------------------
 practiceName: Your Dental Practice
-phone: "(555) 555-5555" # phoneLink (tel:+1...) is derived automatically
+phone: (555) 555-5555
 address: 123 Main Street, Your City, ST 00000
-bookingLink: "#contact" # online scheduler URL, or "#contact" to scroll to the form
+bookingLink: '#contact'
 mapLink: https://maps.google.com/
-# mapEmbedUrl: https://www.google.com/maps/embed?pb=... # Google Maps "Embed a map" iframe src
 hours:
   - day: Monday
     hours: 9:00 am - 6:00 pm
@@ -25,16 +14,9 @@ hours:
     hours: 9:00 am - 6:00 pm
   - day: Friday
     hours: 9:00 am - 2:00 pm
-
-# --- Logos -------------------------------------------------------------------
 logo:
   src: /images/logo.svg
   alt: Your Dental Practice logo
-# footerLogo: # optional — falls back to `logo` when omitted
-#   src: /images/logo-dark.svg
-#   alt: Your Dental Practice footer logo
-
-# --- Header ------------------------------------------------------------------
 header:
   announcementBar:
     - Announcement 1 is a very long accouncement
@@ -42,64 +24,23 @@ header:
     - Announcement 3 is shorter
     - Announcement 4 is fine
   bookBtnText: Schedule Online
-
-# --- Theme -------------------------------------------------------------------
-# CloudCannon writers only need to fill in the first block (brand identity).
-# Everything else derives automatically. Use "Advanced Overrides" only when a
-# specific value doesn't fit the derived palette.
 theme:
-  # Overall aesthetic — "default" (light) or "dark"
   preset: default
-
-  # --- Brand identity (required) ---
-  brand: "#132a3e"        # primary brand color — headers, dark sections, primary text
-  brandText: "#ffffff"    # text color on brand-colored backgrounds
-  accent: "#78b843"       # CTAs, buttons, links, highlights
-  accentText: "#ffffff"   # text on accent-colored backgrounds
-
-  # --- Secondary brand (commonly customized) ---
-  # announcementBg: "#43BBBF"    # the top announcement bar background
-  # announcementText: "#ffffff"
-  # heroBg: "#f4f4f4"            # hero section background
-  # heroText: "#132a3e"
-
-  # --- Advanced overrides (leave blank to derive from brand + accent) ---
-  # brandMuted: "#1e415e"
-  # brandSubtle: "#4a7ab5"
-  # dark: "#132a3e"
-  # link: "#78b843"
-  # linkHover: "#132a3e"
-  # bg: "#ffffff"
-  # bgSurface: "#f4f7fb"
-  # bgMuted: "#e8eef5"
-  # text: "#333333"
-  # textStrong: "#000000"
-  # textMuted: "#666666"
-  # border: "#e0e0e0"
-# --- Footer ------------------------------------------------------------------
+  brand: '#132a3e'
+  brandText: '#ffffff'
+  accent: '#78b843'
+  accentText: '#ffffff'
 footer:
-  layout: logo-info-map # logo-info-map | logo-map-info | info-logo-map | stacked
+  layout: logo-info-map
   showMap: true
-  bgColor: "#132a3e"
-  accentColor: "#e2231a"
-  phoneColor: "#e2231a"
+  bgColor: '#5992c3'
+  accentColor: '#e2231a'
+  phoneColor: '#e2231a'
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
-
-# --- Calls to action -----------------------------------------------------------
 cta:
-  stickyBar: # mobile-only fixed bar at the bottom of the screen
+  stickyBar:
     enabled: true
     callText: Call Now
     bookText: Book Online
-
-# --- Tracking ------------------------------------------------------------------
-# Plug and play: fill in an ID and the tag loads; leave it out (or commented)
-# and nothing is injected. All are optional and independent.
 tracking:
-  # ga4MeasurementId: G-XXXXXXXXXX # Google Analytics 4
-  # gtmContainerId: GTM-XXXXXXX # Google Tag Manager (use this OR ga4 direct, usually not both)
-  # googleAdsId: AW-XXXXXXXXX # Google Ads conversion tracking
-  # metaPixelId: "000000000000000" # Meta / Facebook Pixel
-  # callTrackingSrc: //cdn.callrail.com/companies/XXXXXXXXX/XXXXXXXXXXXXXXXX/12/swap.js # CallRail dynamic number insertion
-  # clarityId: xxxxxxxxxx # Microsoft Clarity heatmaps
-  trackConversions: true # fire GA events on tel: link + booking button clicks
+  trackConversions: true
