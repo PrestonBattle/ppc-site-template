@@ -19,7 +19,7 @@ const {
 ---
 
 <footer class="footer" {...htmlAttributes}>
-  <CustomSection maxContentWidth="2xl" paddingHorizontal="md" paddingVertical="2xl">
+  <CustomSection maxContentWidth="2xl" paddingHorizontal="md" paddingVertical="2xl" backgroundColor="brand" colorScheme="contrast">
     <div class="footer-content">
       <div class="content-container">
         <Image source={logoSource} alt={logoAlt} class="footer-logo" editable={false} />
@@ -84,12 +84,10 @@ const {
       }
 
       .footer-legal-text {
-        color: var(--color-text-muted);
-        text-align: center;
-        @container (min-width: 600px) {
-          text-align: start;
-        }
-      }
+  color: var(--color-text);
+  opacity: 0.8;
+  ...
+}
 
       .footer-logo {
         flex-shrink: 0;

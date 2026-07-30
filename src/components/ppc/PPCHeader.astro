@@ -160,9 +160,23 @@ const {
     }
 
     .ppc-announcement-bar {
-      background: var(--ppc-ann-bg);
-      padding: var(--spacing-sm) var(--spacing-lg);
-    }
+  background: var(--ppc-ann-bg, var(--color-brand));
+  padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.ppc-announcement-item {
+  color: var(--ppc-ann-text, var(--color-text-on-brand));
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ppc-announcement-dot {
+  color: var(--ppc-ann-text, var(--color-text-on-brand));
+  opacity: 0.5;
+  font-size: 0.7rem;
+}
 
     .ppc-announcement-inner {
       max-width: 1200px;

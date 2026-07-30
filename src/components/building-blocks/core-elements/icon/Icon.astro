@@ -123,6 +123,23 @@ if (!_component && !isValidName) {
           background-color: var(--cyan-light);
         }
       }
+      &.color-brand {
+  color: var(--color-brand);
+
+  &.background {
+    background-color: var(--color-brand);
+    color: var(--color-text-on-brand);
+  }
+}
+
+&.color-accent {
+  color: var(--color-accent, var(--ppc-accent));
+
+  &.background {
+    background-color: var(--color-accent, var(--ppc-accent));
+    color: var(--color-text-on-accent, var(--ppc-accent-text));
+  }
+}
 
       &.size-sm {
         font-size: var(--font-size-sm);
