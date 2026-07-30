@@ -84,10 +84,13 @@ const {
       }
 
       .footer-legal-text {
-  color: var(--color-text);
-  opacity: 0.8;
-  ...
-}
+        color: var(--color-text);
+        opacity: 0.8;
+        text-align: center;
+        @container (min-width: 600px) {
+          text-align: start;
+        }
+      }
 
       .footer-logo {
         flex-shrink: 0;
