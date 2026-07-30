@@ -33,7 +33,7 @@ theme:
 footer:
   layout: logo-info-map
   showMap: true
-  bgColor:
+  bgColor: '#db8834'
   accentColor: '#db8834'
   phoneColor: '#ffffff'
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
