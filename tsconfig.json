@@ -21,6 +21,6 @@
       "@assets/*": ["src/assets/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "live-editing.ts"],
   "exclude": ["node_modules", "dist"]
 }

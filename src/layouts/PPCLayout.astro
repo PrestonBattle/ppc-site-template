@@ -111,5 +111,7 @@ const cssVars = Object.entries(varMap)
 </BaseLayout>
 
 <script>
-  import "../scripts/register-editables.ts";
+  if (window.inEditorMode) {
+    import("../../live-editing");
+  }
 </script>
