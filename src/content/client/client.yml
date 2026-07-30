@@ -26,14 +26,14 @@ header:
   bookBtnText: Schedule Online
 theme:
   preset: default
-  brand: '#132a3e'
+  brand: '#e57d12'
   brandText: '#ffffff'
   accent: '#78b843'
   accentText: '#ffffff'
 footer:
   layout: logo-info-map
   showMap: true
-  bgColor: '#e57d12'
+  bgColor:
   accentColor: '#db8834'
   phoneColor: '#ffffff'
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
