@@ -6,7 +6,13 @@ import { registerAstroComponent } from "@cloudcannon/editable-regions/astro";
 import "@cloudcannon/editable-regions/astro-react-renderer";
 
 // Auto-discover and register every .astro component
-const componentModules = import.meta.glob("./src/components/**/*.astro", { eager: true });
+const componentModules = import.meta.glob(
+  [
+    "./src/components/page-sections/**/*.astro",
+    "./src/components/page-sections/builders/**/*.astro",
+  ],
+  { eager: true }
+);
 
 function pascalToKebab(str: string): string {
   return str.replace(/([A-Z])/g, "-$1").toLowerCase().replace(/^-/, "");
