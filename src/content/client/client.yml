@@ -34,7 +34,7 @@ footer:
   layout: logo-info-map
   showMap: true
   bgColor: '#e57d12'
-  accentColor: '#ffffff'
+  accentColor: '#db8834'
   phoneColor: '#ffffff'
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
 cta:
