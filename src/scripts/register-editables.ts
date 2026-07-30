@@ -1,4 +1,6 @@
 
+// @ts-ignore - side-effect import registers Astro's SSR renderer with CloudCannon
+import "@cloudcannon/editable-regions/astro-react-renderer";
 import { registerAstroComponent } from "@cloudcannon/editable-regions/astro";
 
 import HeroSplit from "@page-sections/heroes/hero-split/HeroSplit.astro";
