@@ -6,6 +6,10 @@ import StickyCallBar from "@components/ppc/StickyCallBar.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { getEntry } from "astro:content";
 
+<script>
+  import "../scripts/register-editables.ts";
+</script>
+
 interface Props {
   title: string;
   description?: string;

@@ -1,0 +1,32 @@
+label: Insurance Block
+icon: verified_user
+description: Insurance carrier logo grid — toggle carriers on/off.
+value:
+  _component: page-sections/info-blocks/insurance-block
+  eyebrow: ""
+  heading: Dental Insurance Welcome
+  subtext: ""
+  insurance:
+    aetna: false
+    careington: false
+    deltaDentalPremier: false
+    cigna: false
+    unitedHealthcare: false
+    bcbs: false
+    principal: false
+    sunLife: false
+  plusManyMore: true
+  note: ""
+  logoHeight: 56
+  colorScheme: inherit
+  backgroundColor: surface
+  paddingVertical: 4xl
+preview:
+  text:
+    - Insurance Block
+  subtext:
+    - key: heading
+  icon: verified_user
+picker_preview:
+  text: Insurance Block
+  subtext: Carrier logo grid — toggle carriers on/off.
