@@ -33,9 +33,9 @@ theme:
 footer:
   layout: logo-info-map
   showMap: true
-  bgColor: '#5992c3'
-  accentColor: '#e2231a'
-  phoneColor: '#e2231a'
+  bgColor: '#e57d12'
+  accentColor: '#ffffff'
+  phoneColor: '#ffffff'
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
 cta:
   stickyBar:
