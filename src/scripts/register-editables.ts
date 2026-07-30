@@ -1,4 +1,5 @@
-import { registerAstroComponent } from "@cloudcannon/editable-regions/integrations/astro";
+// @ts-ignore - package doesn't expose types for this subpath
+import { registerAstroComponent } from "@cloudcannon/editable-regions/integrations/astro/index.mjs";
 
 import HeroSplit from "@page-sections/heroes/hero-split/HeroSplit.astro";
 import HeroCenter from "@page-sections/heroes/hero-center/HeroCenter.astro";
