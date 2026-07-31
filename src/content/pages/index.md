@@ -156,11 +156,11 @@ pageSections:
         iconPosition: before
         hideText: false
         disabled: false
-    imageSource: /src/assets/images/placeholder-team.jpg
+    imageSource: /src/assets/images/index-banner-a-1.webp
     imageAlt: Our friendly team
     reverse: false
-    colorScheme: default
-    backgroundColor: base
+    colorScheme: inherit
+    backgroundColor: surface
     id: contact
   - _component: page-sections/ctas/cta-center
     heading: Ready to Book Your Appointment?
@@ -184,8 +184,8 @@ pageSections:
         iconPosition: before
         variant: tertiary
         size: md
-    colorScheme: contrast
-    backgroundColor: surface
+    colorScheme: inherit
+    backgroundColor: accent
     rounded: false
 description: >-
   Comprehensive dental care for the whole family. New patient specials and
