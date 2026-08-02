@@ -21,8 +21,6 @@ header:
   announcementBar:
     - Announcement 1 is a very long accouncement
     - Announcement 2 is a little long
-    - Announcement 3 is shorter
-    - Announcement 4 is fine
   bookBtnText: Schedule Online
 theme:
   preset: bold-red
