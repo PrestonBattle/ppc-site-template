@@ -22,36 +22,55 @@ if (!clientEntry) {
 const client = clientEntry.data;
 const { theme, header, footer, cta, tracking } = client;
 
+// ---- Preset resolution -----------------------------------------------------
+// If a preset is selected (and not "custom"), load its values as the base.
+// Any explicit theme.* field in client.yml overrides the preset value.
+let presetValues: Record<string, string> = {};
+
+if (theme.preset && theme.preset !== "custom") {
+  const presetEntry = await getEntry("themePresets", theme.preset);
+  if (presetEntry) {
+    const { name, description: _desc, ...colors } = presetEntry.data;
+    presetValues = colors as Record<string, string>;
+  } else {
+    console.warn(`[PPCLayout] Preset '${theme.preset}' not found — using explicit theme values only`);
+  }
+}
+
+// Merge preset defaults with explicit theme values. Explicit values always win.
+const t = (field: string): string | undefined =>
+  ((theme as Record<string, unknown>)[field] as string | undefined) ?? presetValues[field];
+
 const varMap: Record<string, string | undefined> = {
-  "--ppc-brand":            theme.brand,
-  "--ppc-brand-text":       theme.brandText,
-  "--ppc-accent":           theme.accent,
-  "--ppc-accent-text":      theme.accentText,
-  "--ppc-brand-muted":      theme.brandMuted,
-  "--ppc-brand-subtle":     theme.brandSubtle,
-  "--ppc-dark":             theme.dark,
-  "--ppc-link":             theme.link,
-  "--ppc-link-hover":       theme.linkHover,
-  "--ppc-bg":               theme.bg,
-  "--ppc-bg-surface":       theme.bgSurface,
-  "--ppc-bg-muted":         theme.bgMuted,
-  "--ppc-bg-accent":        theme.bgAccent,
-  "--ppc-bg-highlight":     theme.bgHighlight,
-  "--ppc-text":             theme.text,
-  "--ppc-text-strong":      theme.textStrong,
-  "--ppc-text-muted":       theme.textMuted,
-  "--ppc-text-inverse":     theme.textInverse,
-  "--ppc-border":           theme.border,
-  "--ppc-border-inputs":    theme.borderInputs,
-  "--ppc-border-strong":    theme.borderStrong,
-  "--ppc-border-subtle":    theme.borderSubtle,
-  "--ppc-ann-bg":           theme.announcementBg,
-  "--ppc-ann-text":         theme.announcementText,
-  "--ppc-hero-bg":          theme.heroBg,
-  "--ppc-hero-text":        theme.heroText,
-  "--ppc-btn-bg":           theme.bookBtnBg ?? theme.accent,
-  "--ppc-btn-text":         theme.bookBtnText ?? theme.accentText,
-  "--ppc-phone-color":      theme.phoneColor ?? theme.accent,
+  "--ppc-brand":            t("brand"),
+  "--ppc-brand-text":       t("brandText"),
+  "--ppc-accent":           t("accent"),
+  "--ppc-accent-text":      t("accentText"),
+  "--ppc-brand-muted":      t("brandMuted"),
+  "--ppc-brand-subtle":     t("brandSubtle"),
+  "--ppc-dark":             t("dark"),
+  "--ppc-link":             t("link"),
+  "--ppc-link-hover":       t("linkHover"),
+  "--ppc-bg":               t("bg"),
+  "--ppc-bg-surface":       t("bgSurface"),
+  "--ppc-bg-muted":         t("bgMuted"),
+  "--ppc-bg-accent":        t("bgAccent"),
+  "--ppc-bg-highlight":     t("bgHighlight"),
+  "--ppc-text":             t("text"),
+  "--ppc-text-strong":      t("textStrong"),
+  "--ppc-text-muted":       t("textMuted"),
+  "--ppc-text-inverse":     t("textInverse"),
+  "--ppc-border":           t("border"),
+  "--ppc-border-inputs":    t("borderInputs"),
+  "--ppc-border-strong":    t("borderStrong"),
+  "--ppc-border-subtle":    t("borderSubtle"),
+  "--ppc-ann-bg":           t("announcementBg"),
+  "--ppc-ann-text":         t("announcementText"),
+  "--ppc-hero-bg":          t("heroBg"),
+  "--ppc-hero-text":        t("heroText"),
+  "--ppc-btn-bg":           t("bookBtnBg") ?? t("accent"),
+  "--ppc-btn-text":         t("bookBtnText") ?? t("accentText"),
+  "--ppc-phone-color":      t("phoneColor") ?? t("accent"),
 };
 
 const cssVars = Object.entries(varMap)

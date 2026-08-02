@@ -1,37 +1,47 @@
 _inputs:
   theme.preset:
     type: select
-    comment: Overall aesthetic — light or dark base
+    comment: Pick a preset for a curated look, or "custom" to define your own colors
     options:
       values:
-        - default
-        - dark
+        - value: dental-blue
+          label: Dental Blue — classic navy with green CTAs
+        - value: dental-teal
+          label: Dental Teal — modern teal with navy
+        - value: warm-earthy
+          label: Warm Earthy — terracotta with sage
+        - value: bold-red
+          label: Bold Red — high-urgency red
+        - value: classic-navy
+          label: Classic Navy — traditional navy with gold
+        - value: custom
+          label: Custom — I'll define colors manually
 
   theme.brand:
     type: color
-    comment: Primary brand color — headers and dark sections
+    comment: (override) Primary brand color — leave blank to use preset value
   theme.brandText:
     type: color
-    comment: Text color on brand-colored backgrounds
+    comment: (override) Text color on brand-colored backgrounds
   theme.accent:
     type: color
-    comment: Accent color — CTAs, buttons, links
+    comment: (override) CTA and button color
   theme.accentText:
     type: color
-    comment: Text color on accent-colored backgrounds
+    comment: (override) Text on accent-colored backgrounds
 
   theme.announcementBg:
     type: color
-    comment: (optional) Announcement bar background — defaults to brand
+    comment: (override) Announcement bar background — defaults to preset or brand
   theme.announcementText:
     type: color
-    comment: (optional) Announcement bar text — defaults to brandText
+    comment: (override) Announcement bar text — defaults to preset or brandText
   theme.heroBg:
     type: color
-    comment: (optional) Hero section background — defaults to page background
+    comment: (override) Hero section background — defaults to page background
   theme.heroText:
     type: color
-    comment: (optional) Hero section text color — defaults to page text
+    comment: (override) Hero section text color — defaults to page text
 
   theme.brandMuted:
     type: color
@@ -68,16 +78,17 @@ _inputs:
     comment: (advanced) Default border color
 
 _groups:
-  - heading: Overall Style
+  - heading: Theme Preset
     inputs:
       - theme.preset
-  - heading: Brand Colors
+  - heading: Brand Color Overrides
+    collapsed: true
     inputs:
       - theme.brand
       - theme.brandText
       - theme.accent
       - theme.accentText
-  - heading: Section Colors (optional)
+  - heading: Section Color Overrides
     collapsed: true
     inputs:
       - theme.announcementBg

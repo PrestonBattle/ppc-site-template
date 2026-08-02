@@ -19,14 +19,57 @@ const pagesCollection = defineCollection({
 });
 
 /* -------------------------------------------------------------------------
+ * Shared helper — hex color validator used across client + theme-presets.
+ * ------------------------------------------------------------------------- */
+const hexColor = z
+  .string()
+  .regex(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/, "Must be a hex color like #1a3a5c");
+
+/* -------------------------------------------------------------------------
+ * THEME PRESETS — curated color palettes. Writers pick one in client.yml
+ * as `theme.preset`; PPCLayout.astro loads it as the base, and explicit
+ * theme.* fields in client.yml override the preset per-field.
+ *
+ * To add a new preset, drop a YAML file in src/content/theme-presets/ and
+ * add its slug to the `theme.preset` enum below.
+ * ------------------------------------------------------------------------- */
+const themePresetSchema = z
+  .object({
+    name: z.string(),
+    description: z.string().optional(),
+    brand: hexColor.optional(),
+    brandText: hexColor.optional(),
+    accent: hexColor.optional(),
+    accentText: hexColor.optional(),
+    announcementBg: hexColor.optional(),
+    announcementText: hexColor.optional(),
+    heroBg: hexColor.optional(),
+    heroText: hexColor.optional(),
+    brandMuted: hexColor.optional(),
+    brandSubtle: hexColor.optional(),
+    dark: hexColor.optional(),
+    link: hexColor.optional(),
+    linkHover: hexColor.optional(),
+    bg: hexColor.optional(),
+    bgSurface: hexColor.optional(),
+    bgMuted: hexColor.optional(),
+    text: hexColor.optional(),
+    textStrong: hexColor.optional(),
+    textMuted: hexColor.optional(),
+    border: hexColor.optional(),
+  })
+  .passthrough();
+
+const themePresetsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.{yml,yaml}", base: "./src/content/theme-presets" }),
+  schema: themePresetSchema,
+});
+
+/* -------------------------------------------------------------------------
  * CLIENT — single source of truth for everything practice-specific.
  * Edit src/content/client/client.yml when spinning up a new site.
  * Invalid or missing fields fail the build with a clear error.
  * ------------------------------------------------------------------------- */
-
-const hexColor = z
-  .string()
-  .regex(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/, "Must be a hex color like #1a3a5c");
 
 /** Derive a tel: link from a display phone number ("(847) 455-8383" -> "tel:+18474558383"). */
 function toTelLink(phone: string): string {
@@ -71,22 +114,27 @@ const clientSchema = z
     /* --- Theme (CSS variables injected site-wide) --- */
     theme: z
       .object({
-        /* ---- Preset ---- */
-        preset: z.enum(["default"]).default("default"),
+        /* ---- Preset ----
+         * Names must match a filename in src/content/theme-presets/
+         * (without the .yml extension), or the literal "custom" which
+         * skips preset loading entirely. */
+        preset: z
+          .enum(["dental-blue", "dental-teal", "warm-earthy", "bold-red", "classic-navy", "custom"])
+          .default("dental-blue"),
 
-        /* ---- Core brand — always used ---- */
-        brand: hexColor.default("#132a3e"),
-        brandText: hexColor.default("#ffffff"),
-        accent: hexColor.default("#e2231a"),
-        accentText: hexColor.default("#ffffff"),
+        /* ---- Overrides — all optional. Any field set here wins over the
+         * preset's value for that field. When preset is "custom", these
+         * are the only source of truth. ---- */
+        brand: hexColor.optional(),
+        brandText: hexColor.optional(),
+        accent: hexColor.optional(),
+        accentText: hexColor.optional(),
 
-        /* ---- Secondary brand — commonly used ---- */
         announcementBg: hexColor.optional(),
         announcementText: hexColor.optional(),
         heroBg: hexColor.optional(),
         heroText: hexColor.optional(),
 
-        /* ---- Advanced overrides — all optional ---- */
         brandMuted: hexColor.optional(),
         brandSubtle: hexColor.optional(),
         dark: hexColor.optional(),
@@ -120,9 +168,9 @@ const clientSchema = z
           .enum(["logo-info-map", "logo-map-info", "info-logo-map", "stacked"])
           .default("logo-info-map"),
         showMap: z.boolean().default(true),
-        bgColor: hexColor.default("#132a3e"),
-        accentColor: hexColor.default("#e2231a"),
-        phoneColor: hexColor.default("#e2231a"),
+        bgColor: hexColor.optional(),
+        accentColor: hexColor.optional(),
+        phoneColor: hexColor.optional(),
         disclaimer: z.string().default(""),
       })
       .default({}),
@@ -136,6 +184,7 @@ const clientSchema = z
             enabled: z.boolean().default(true),
             callText: z.string().default("Call Now"),
             bookText: z.string().default("Book Online"),
+            mapText: z.string().optional(),
           })
           .default({}),
       })
@@ -174,6 +223,7 @@ const clientCollection = defineCollection({
 export const collections = {
   pages: pagesCollection,
   client: clientCollection,
+  themePresets: themePresetsCollection,
 };
 
 export type ClientConfig = z.output<typeof clientSchema>;
