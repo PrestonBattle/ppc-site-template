@@ -25,7 +25,7 @@ header:
     - Announcement 4 is fine
   bookBtnText: Schedule Online
 theme:
-  preset: warm-earthy
+  preset: bold-red
 footer:
   layout: logo-info-map
   showMap: true
