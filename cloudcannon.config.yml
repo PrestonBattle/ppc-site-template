@@ -48,19 +48,18 @@ collections_config:
         comment: Pick a preset for a curated look, or "custom" to define your own colors.
         options:
           values:
-            - value: dental-blue
-              label: Dental Blue — classic navy with green CTAs
-            - value: dental-teal
-              label: Dental Teal — modern teal with navy
-            - value: warm-earthy
-              label: Warm Earthy — terracotta with sage
-            - value: bold-red
-              label: Bold Red — high-urgency red
-            - value: classic-navy
-              label: Classic Navy — traditional navy with gold
-            - value: custom
-              label: Custom — I'll define colors manually
-
+            - id: dental-blue
+              name: Dental Blue — classic navy with green CTAs
+            - id: dental-teal
+              name: Dental Teal — modern teal with navy
+            - id: warm-earthy
+              name: Warm Earthy — terracotta with sage
+            - id: bold-red
+              name: Bold Red — high-urgency red
+            - id: classic-navy
+              name: Classic Navy — traditional navy with gold
+            - id: custom
+              name: Custom — I'll define colors manually
       theme.brand:
         type: color
         comment: (override) Primary brand color — leave blank to use preset value
