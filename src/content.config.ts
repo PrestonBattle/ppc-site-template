@@ -216,7 +216,10 @@ const clientSchema = z
   }));
 
 const clientCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{yml,yaml}", base: "./src/content/client" }),
+  loader: glob({
+    pattern: ["**/*.{yml,yaml}", "!**/*.cloudcannon.*"],
+    base: "./src/content/client",
+  }),
   schema: clientSchema,
 });
 
