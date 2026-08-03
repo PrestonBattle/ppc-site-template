@@ -42,16 +42,20 @@ const {
 const {
   layout = "logo-info-map",
   showMap = true,
-  bgColor = "#1a3a5c",
-  accentColor = "#00BFA6",
-  phoneColor = "#00BFA6",
+  bgColor,
+  accentColor,
+  phoneColor,
 } = footer;
 
 const activeLogo = footerLogoSrc || logoSrc;
 const activeLogoAlt = footerLogoAlt || logoAlt;
-const isStacked = layout === "stacked";
 
-// Column order based on layout
+const styleParts: string[] = [];
+if (bgColor) styleParts.push(`--footer-bg: ${bgColor};`);
+if (accentColor) styleParts.push(`--footer-accent: ${accentColor};`);
+if (phoneColor) styleParts.push(`--footer-phone: ${phoneColor};`);
+const footerStyle = styleParts.join(" ");
+
 const colOrder = {
   "logo-info-map": showMap ? ["brand", "info", "map"] : ["brand", "info"],
   "logo-map-info": showMap ? ["brand", "map", "info"] : ["brand", "info"],
@@ -61,14 +65,7 @@ const colOrder = {
 const order = colOrder[layout] || colOrder["logo-info-map"];
 ---
 
-<footer
-  class="ppc-footer"
-  style={`
-  --footer-bg: ${bgColor};
-  --footer-accent: ${accentColor};
-  --footer-phone: ${phoneColor};
-`}
->
+<footer class="ppc-footer" style={footerStyle}>
   <div class="ppc-footer-main">
     <div class:list={`ppc-footer-inner layout-${layout}${!showMap ? " no-map" : ""}`}>
       {
@@ -146,18 +143,13 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
     </div>
   </div>
 
-  <!-- Copyright -->
   <div class="ppc-footer-copyright">
     <div class="ppc-footer-copyright-inner">
       <p>
-        © {new Date().getFullYear()}
-        {practiceName} |
+        © {new Date().getFullYear()} {practiceName} |
         <a href="/sitemap.html">Sitemap</a> |
-        <a href="/privacy-policy.html">Privacy Policy</a> | Site designed and maintained by <a
-          href="https://www.tntdental.com"
-          target="_blank"
-          rel="noopener">TNT Dental</a
-        >
+        <a href="/privacy-policy.html">Privacy Policy</a> |
+        Site designed and maintained by <a href="https://www.tntdental.com" target="_blank" rel="noopener">TNT Dental</a>
       </p>
     </div>
   </div>
@@ -176,7 +168,7 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
 <style lang="pcss" is:global>
   @layer page-sections {
     .ppc-footer {
-      background: var(--footer-bg, #1a3a5c);
+      background: var(--footer-bg, var(--color-brand));
     }
 
     .ppc-footer-main {
@@ -226,7 +218,7 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
 
     .ppc-footer-schedule-btn {
       display: inline-block;
-      background: var(--footer-accent, #00BFA6);
+      background: var(--footer-accent, var(--color-accent, var(--ppc-accent)));
       color: white;
       padding: var(--spacing-sm) var(--spacing-xl);
       border-radius: 999px;
@@ -249,18 +241,9 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
       gap: var(--spacing-xl);
     }
 
-    .ppc-footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  gap: var(--spacing-2xl);
-  align-items: start;
-  grid-template-columns: 200px 1fr 300px;
-}
-
-.ppc-footer-inner.no-map {
-  grid-template-columns: 200px 1fr;
-}
+    .ppc-footer-inner.no-map {
+      grid-template-columns: 200px 1fr;
+    }
 
     .ppc-footer-heading {
       font-size: 0.78rem;
@@ -270,7 +253,7 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
       letter-spacing: 0.1em;
       margin: 0 0 var(--spacing-sm);
       padding-bottom: var(--spacing-xs);
-      border-bottom: 2px solid var(--footer-accent, #00BFA6);
+      border-bottom: 2px solid var(--footer-accent, var(--color-accent, var(--ppc-accent)));
     }
 
     .ppc-footer-address {
@@ -288,7 +271,7 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
 
     .ppc-footer-phone {
       display: block;
-      color: var(--footer-phone, #00BFA6);
+      color: var(--footer-phone, var(--color-accent, var(--ppc-accent)));
       font-size: 1.4rem;
       font-weight: 800;
       text-decoration: none;
@@ -299,32 +282,32 @@ const order = colOrder[layout] || colOrder["logo-info-map"];
     }
 
     .ppc-hours-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
 
-.ppc-hours-row {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  font-size: 0.95rem;
-}
+    .ppc-hours-row {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      font-size: 0.95rem;
+    }
 
-.ppc-hours-day {
-  color: rgba(255,255,255,0.85);
-  white-space: nowrap;
-  min-width: 130px;
-  font-weight: 400;
-}
+    .ppc-hours-day {
+      color: rgba(255,255,255,0.85);
+      white-space: nowrap;
+      min-width: 130px;
+      font-weight: 400;
+    }
 
-.ppc-hours-time {
-  color: white;
-  font-weight: 400;
-}
+    .ppc-hours-time {
+      color: white;
+      font-weight: 400;
+    }
 
     .ppc-footer-map-link {
-      color: var(--footer-accent, #00BFA6);
+      color: var(--footer-accent, var(--color-accent, var(--ppc-accent)));
       font-size: 0.9rem;
       text-decoration: none;
     }
