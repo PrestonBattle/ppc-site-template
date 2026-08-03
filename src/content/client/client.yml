@@ -21,47 +21,17 @@ header:
   announcementBar:
     - Announcement 1 is a very long accouncement
     - Announcement 2 is a little long
-    - Announcement 3 is shorter
-    - Announcement 4 is fine
   bookBtnText: Schedule Online
-
-# --- Theme -------------------------------------------------------------------
-# Pick a preset for a curated look, or set preset: custom to define your own.
-# Any color set below overrides the preset for that specific field.
 theme:
-  preset: dental-blue   # dental-blue | dental-teal | warm-earthy | bold-red | classic-navy | custom
-
-  # --- Optional overrides (fill in to override the preset) ---
-  # brand: "#132a3e"
-  # brandText: "#ffffff"
-  # accent: "#78b843"
-  # accentText: "#ffffff"
-  # announcementBg: "#43BBBF"
-  # announcementText: "#ffffff"
-
-  # --- Advanced overrides (leave blank unless a preset value doesn't fit) ---
-  # brandMuted: "#1e415e"
-  # brandSubtle: "#4a7ab5"
-  # link: "#78b843"
-  # linkHover: "#132a3e"
-  # bg: "#ffffff"
-  # bgSurface: "#f4f7fb"
-  # bgMuted: "#e8eef5"
-  # text: "#333333"
-  # textStrong: "#000000"
-  # textMuted: "#666666"
-  # border: "#e0e0e0"
-
+  preset: bold-red
 footer:
   layout: logo-info-map
   showMap: true
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
-
 cta:
   stickyBar:
     enabled: true
     callText: Call Now
     bookText: Book Online
-
 tracking:
   trackConversions: true
