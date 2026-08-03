@@ -23,7 +23,7 @@ header:
     - Announcement 2 is a little long
   bookBtnText: Schedule Online
 theme:
-  preset: bold-red
+  preset: classic-navy
 footer:
   layout: logo-info-map
   showMap: true
