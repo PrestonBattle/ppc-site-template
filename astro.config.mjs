@@ -18,7 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: "https://example.com",
   build: {
-    inlineStylesheets: "always",
+    inlineStylesheets: "auto",
   },
   devToolbar: {
     enabled: false,
