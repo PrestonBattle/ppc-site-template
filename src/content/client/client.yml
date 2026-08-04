@@ -26,7 +26,7 @@ theme:
   preset: classic-navy
 footer:
   layout: logo-info-map
-  showMap: true
+  showMap: false
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
 cta:
   stickyBar:
