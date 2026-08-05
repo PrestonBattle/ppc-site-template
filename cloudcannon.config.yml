@@ -118,6 +118,20 @@ collections_config:
         comment: (advanced) Secondary/muted text color
       theme.border:
         type: color
+        comment: (advanced) Default border color
+
+      tracking.ga4MeasurementId:
+        type: text
+        comment: "GA4 Measurement ID (starts with G-). Leave blank to skip Google Analytics."
+      tracking.simplifiId:
+        type: text
+        comment: "Simplifi advertiser GUID from the sifitag URL. Leave blank if unused."
+      tracking.ctmAccountId:
+        type: text
+        comment: "CallTrackingMetrics account ID (number in the tctm.co URL). Leave blank if unused."
+      tracking.trackConversions:
+        type: switch
+        comment: "Fire GA4 events on phone clicks and booking button clicks. Needs GA4 above."
   data:
     path: src/data
     glob:

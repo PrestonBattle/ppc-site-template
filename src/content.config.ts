@@ -195,17 +195,11 @@ const clientSchema = z
       .object({
         /** GA4 Measurement ID, e.g. "G-XXXXXXXXXX" */
         ga4MeasurementId: z.string().optional(),
-        /** Google Tag Manager container, e.g. "GTM-XXXXXXX" */
-        gtmContainerId: z.string().optional(),
-        /** Google Ads conversion ID, e.g. "AW-XXXXXXXXX" (loaded via gtag) */
-        googleAdsId: z.string().optional(),
-        /** Meta (Facebook) Pixel ID */
-        metaPixelId: z.string().optional(),
-        /** CallRail (or other call-tracking) script src URL */
-        callTrackingSrc: z.string().optional(),
-        /** Microsoft Clarity project ID */
-        clarityId: z.string().optional(),
-        /** Fire click events on tel: links and booking buttons (needs GA4/gtag). */
+        /** Simplifi advertiser GUID, e.g. "d0839950-0d38-0137-dfb5-06a9ed4ca31b" */
+        simplifiId: z.string().optional(),
+        /** CallTrackingMetrics account ID, e.g. "256838" */
+        ctmAccountId: z.string().optional(),
+        /** Fire click events on tel: links and booking buttons (needs GA4). */
         trackConversions: z.boolean().default(true),
       })
       .default({}),

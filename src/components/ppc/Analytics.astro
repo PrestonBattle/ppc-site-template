@@ -5,110 +5,68 @@
  */
 interface Props {
   ga4MeasurementId?: string;
-  gtmContainerId?: string;
-  googleAdsId?: string;
-  metaPixelId?: string;
-  callTrackingSrc?: string;
-  clarityId?: string;
+  simplifiId?: string;
+  ctmAccountId?: string;
   trackConversions?: boolean;
 }
 
 const {
   ga4MeasurementId,
-  gtmContainerId,
-  googleAdsId,
-  metaPixelId,
-  callTrackingSrc,
-  clarityId,
+  simplifiId,
+  ctmAccountId,
   trackConversions = true,
 } = Astro.props;
 
-// gtag.js is loaded once if either GA4 or Google Ads is configured
-const gtagPrimaryId = ga4MeasurementId || googleAdsId;
+const gtagInit = ga4MeasurementId
+  ? `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', '${ga4MeasurementId}');
+  `
+  : "";
 
-const gtagInit = `
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  window.gtag = gtag;
-  gtag('js', new Date());
-  ${ga4MeasurementId ? `gtag('config', '${ga4MeasurementId}');` : ""}
-  ${googleAdsId ? `gtag('config', '${googleAdsId}');` : ""}
-`;
-
-const gtmInit = `
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','${gtmContainerId}');
-`;
-
-const metaPixelInit = `
-  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-  document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '${metaPixelId}');
-  fbq('track', 'PageView');
-`;
-
-const clarityInit = `
-  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-  t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
-  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, 'clarity', 'script', '${clarityId}');
-`;
-
-/*
- * Conversion click tracking — fires when visitors tap a phone number or a
- * booking button (any link with the data-track-booking attribute):
- * - gtag:      "phone_call_click" / "booking_click" events (mark as
- *              conversions in GA4; mirrored to Google Ads if configured)
- * - dataLayer: same event names, for GTM triggers
- * - fbq:       "Contact" / "Schedule" standard events
- */
-const conversionTracking = `
-  document.addEventListener('click', function (e) {
-    var link = e.target && e.target.closest && e.target.closest('a[href]');
-    if (!link) return;
-    var href = link.getAttribute('href') || '';
-    var isPhone = href.indexOf('tel:') === 0;
-    var isBooking = link.hasAttribute('data-track-booking');
-    if (!isPhone && !isBooking) return;
-    var eventName = isPhone ? 'phone_call_click' : 'booking_click';
-    var payload = {
-      link_url: href,
-      link_text: (link.textContent || '').trim().slice(0, 100),
-    };
-    if (typeof window.gtag === 'function') window.gtag('event', eventName, payload);
-    if (window.dataLayer && typeof window.dataLayer.push === 'function') {
-      window.dataLayer.push(Object.assign({ event: eventName }, payload));
-    }
-    if (typeof window.fbq === 'function') window.fbq('track', isPhone ? 'Contact' : 'Schedule');
-  });
-`;
+const conversionListenerInit =
+  trackConversions && ga4MeasurementId
+    ? `
+    document.addEventListener('click', function(e) {
+      const el = e.target.closest('a');
+      if (!el) return;
+      if (el.href && el.href.startsWith('tel:')) {
+        gtag('event', 'phone_click', { event_category: 'engagement', link_url: el.href });
+      }
+      if (el.dataset.trackBooking) {
+        gtag('event', 'booking_click', { event_category: 'conversion', link_url: el.href });
+      }
+    });
+  `
+    : "";
 ---
 
-{/* Google tag (GA4 and/or Google Ads) */}
 {
-  gtagPrimaryId && (
-    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gtagPrimaryId}`} />
+  ga4MeasurementId && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4MeasurementId}`} />
+      <script set:html={gtagInit} />
+    </>
   )
 }
-{gtagPrimaryId && <script is:inline set:html={gtagInit} />}
 
-{/* Google Tag Manager */}
-{gtmContainerId && <script is:inline set:html={gtmInit} />}
+{
+  simplifiId && (
+    <script async src={`https://tag.simpli.fi/sifitag/${simplifiId}`} />
+  )
+}
 
-{/* Meta (Facebook) Pixel */}
-{metaPixelId && <script is:inline set:html={metaPixelInit} />}
+{
+  ctmAccountId && (
+    <script async src={`//${ctmAccountId}.tctm.co/t.js`} />
+  )
+}
 
-{/* Call tracking (CallRail dynamic number insertion, etc.) */}
-{callTrackingSrc && <script is:inline async src={callTrackingSrc} />}
-
-{/* Microsoft Clarity */}
-{clarityId && <script is:inline set:html={clarityInit} />}
-
-{/* Conversion click tracking */}
-{trackConversions && <script is:inline set:html={conversionTracking} />}
+{
+  conversionListenerInit && (
+    <script set:html={conversionListenerInit} />
+  )
+}

@@ -34,4 +34,7 @@ cta:
     callText: Call Now
     bookText: Book Online
 tracking:
+  # ga4MeasurementId: G-XXXXXXXXXX
+  # simplifiId: d0839950-0d38-0137-dfb5-06a9ed4ca31b
+  # ctmAccountId: "256838"
   trackConversions: true
