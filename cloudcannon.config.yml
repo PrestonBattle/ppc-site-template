@@ -150,56 +150,6 @@ collections_config:
         type: switch
         comment: "Fire GA4 events on phone clicks and booking button clicks. Needs GA4 above."
 
-    _group:
-      - heading: Practice Information
-        inputs:
-          - practiceName
-          - phone
-          - bookingLink
-
-      - heading: Theme Preset
-        inputs:
-          - theme.preset
-
-      - heading: Brand Color Overrides
-        collapsed: true
-        inputs:
-          - theme.brand
-          - theme.brandText
-          - theme.accent
-          - theme.accentText
-
-      - heading: Section Color Overrides
-        collapsed: true
-        inputs:
-          - theme.announcementBg
-          - theme.announcementText
-          - theme.heroBg
-          - theme.heroText
-
-      - heading: Advanced Overrides
-        collapsed: true
-        inputs:
-          - theme.brandMuted
-          - theme.brandSubtle
-          - theme.link
-          - theme.linkHover
-          - theme.bg
-          - theme.bgSurface
-          - theme.bgMuted
-          - theme.text
-          - theme.textStrong
-          - theme.textMuted
-          - theme.border
-
-      - heading: Tracking
-        collapsed: true
-        inputs:
-          - tracking.ga4MeasurementId
-          - tracking.simplifiId
-          - tracking.ctmAccountId
-          - tracking.trackConversions
-
   data:
     path: src/data
     glob:
@@ -227,13 +177,11 @@ collections_config:
               name: TikTok
             - id: youtube
               name: YouTube
+
 data_config:
   seo:
     path: src/data/seo.json
+
 _snippets_imports:
   hugo: false
   jekyll: false
-  eleventy: false
-  processwire: false
-_editor:
-  default_path: /
