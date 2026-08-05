@@ -30,7 +30,7 @@ pageSections:
         size: md
     reverse: false
     colorScheme: default
-    backgroundColor: base
+    backgroundColor: '#0e0e0e'
   - _component: page-sections/features/feature-grid
     eyebrow: Why Choose Us
     heading: 3 Great Reasons to Choose Us
