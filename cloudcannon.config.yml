@@ -39,6 +39,7 @@ collections_config:
       title:
         type: text
         comment: Controls the metadata title for the page.
+
   client:
     path: src/content/client
     glob:
@@ -58,6 +59,43 @@ collections_config:
       bookingLink:
         type: url
         comment: Online scheduling link, or '#contact' to scroll to the form.
+
+      theme:
+        type: object
+        options:
+          subtype: object
+          groups:
+            - heading: Preset
+              inputs:
+                - preset
+            - heading: Brand Colors
+              collapsed: true
+              inputs:
+                - brand
+                - brandText
+                - accent
+                - accentText
+            - heading: Section Colors
+              collapsed: true
+              inputs:
+                - announcementBg
+                - announcementText
+                - heroBg
+                - heroText
+            - heading: Advanced Overrides
+              collapsed: true
+              inputs:
+                - brandMuted
+                - brandSubtle
+                - link
+                - linkHover
+                - bg
+                - bgSurface
+                - bgMuted
+                - text
+                - textStrong
+                - textMuted
+                - border
 
       theme.preset:
         type: select
@@ -136,6 +174,20 @@ collections_config:
       theme.border:
         type: color
         comment: (advanced) Default border color
+
+      tracking:
+        type: object
+        options:
+          subtype: object
+          groups:
+            - heading: Analytics IDs
+              inputs:
+                - ga4MeasurementId
+                - simplifiId
+                - ctmAccountId
+            - heading: Options
+              inputs:
+                - trackConversions
 
       tracking.ga4MeasurementId:
         type: text
