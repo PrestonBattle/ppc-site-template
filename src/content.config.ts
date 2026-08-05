@@ -26,46 +26,6 @@ const hexColor = z
   .regex(/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/, "Must be a hex color like #1a3a5c");
 
 /* -------------------------------------------------------------------------
- * THEME PRESETS — curated color palettes. Writers pick one in client.yml
- * as `theme.preset`; PPCLayout.astro loads it as the base, and explicit
- * theme.* fields in client.yml override the preset per-field.
- *
- * To add a new preset, drop a YAML file in src/content/theme-presets/ and
- * add its slug to the `theme.preset` enum below.
- * ------------------------------------------------------------------------- */
-const themePresetSchema = z
-  .object({
-    name: z.string(),
-    description: z.string().optional(),
-    brand: hexColor.optional(),
-    brandText: hexColor.optional(),
-    accent: hexColor.optional(),
-    accentText: hexColor.optional(),
-    announcementBg: hexColor.optional(),
-    announcementText: hexColor.optional(),
-    heroBg: hexColor.optional(),
-    heroText: hexColor.optional(),
-    brandMuted: hexColor.optional(),
-    brandSubtle: hexColor.optional(),
-    dark: hexColor.optional(),
-    link: hexColor.optional(),
-    linkHover: hexColor.optional(),
-    bg: hexColor.optional(),
-    bgSurface: hexColor.optional(),
-    bgMuted: hexColor.optional(),
-    text: hexColor.optional(),
-    textStrong: hexColor.optional(),
-    textMuted: hexColor.optional(),
-    border: hexColor.optional(),
-  })
-  .passthrough();
-
-const themePresetsCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{yml,yaml}", base: "./src/content/theme-presets" }),
-  schema: themePresetSchema,
-});
-
-/* -------------------------------------------------------------------------
  * CLIENT — single source of truth for everything practice-specific.
  * Edit src/content/client/client.yml when spinning up a new site.
  * Invalid or missing fields fail the build with a clear error.
@@ -111,19 +71,11 @@ const clientSchema = z
       .default({}),
 
     /* --- Theme (CSS variables injected site-wide) --- */
+    /* --- Theme (CSS variables injected site-wide) ---
+     * Writers pick a preset in CloudCannon which fills in these values;
+     * they can then tweak any individual color independently. */
     theme: z
       .object({
-        /* ---- Preset ----
-         * Names must match a filename in src/content/theme-presets/
-         * (without the .yml extension), or the literal "custom" which
-         * skips preset loading entirely. */
-        preset: z
-          .enum(["dental-blue", "dental-teal", "warm-earthy", "bold-red", "classic-navy", "custom"])
-          .default("dental-blue"),
-
-        /* ---- Overrides — all optional. Any field set here wins over the
-         * preset's value for that field. When preset is "custom", these
-         * are the only source of truth. ---- */
         brand: hexColor.optional(),
         brandText: hexColor.optional(),
         accent: hexColor.optional(),
@@ -153,7 +105,7 @@ const clientSchema = z
         borderStrong: hexColor.optional(),
         borderSubtle: hexColor.optional(),
 
-        /* ---- Component-specific (kept for backward compat) ---- */
+        /* ---- Component-specific overrides ---- */
         bookBtnBg: hexColor.optional(),
         bookBtnText: hexColor.optional(),
         phoneColor: hexColor.optional(),

@@ -62,118 +62,28 @@ collections_config:
 
       theme:
         type: object
+        comment: Pick a preset from the picker below, or edit individual colors.
         options:
-          subtype: object
-          groups:
-            - heading: Preset
-              inputs:
-                - preset
-            - heading: Brand Colors
-              collapsed: true
-              inputs:
-                - brand
-                - brandText
-                - accent
-                - accentText
-            - heading: Section Colors
-              collapsed: true
-              inputs:
-                - announcementBg
-                - announcementText
-                - heroBg
-                - heroText
-            - heading: Advanced Overrides
-              collapsed: true
-              inputs:
-                - brandMuted
-                - brandSubtle
-                - link
-                - linkHover
-                - bg
-                - bgSurface
-                - bgMuted
-                - text
-                - textStrong
-                - textMuted
-                - border
-
-      theme.preset:
-        type: select
-        comment: Pick a preset for a curated look, or "custom" to define your own colors.
-        options:
-          values:
-            - id: dental-blue
-              name: Dental Blue — classic navy with green CTAs
-            - id: dental-teal
-              name: Dental Teal — modern teal with navy
-            - id: warm-earthy
-              name: Warm Earthy — terracotta with sage
-            - id: bold-red
-              name: Bold Red — high-urgency red
-            - id: classic-navy
-              name: Classic Navy — traditional navy with gold
-            - id: custom
-              name: Custom — I'll define colors manually
+          structures: _structures.theme_presets
 
       theme.brand:
         type: color
-        comment: (override) Primary brand color — leave blank to use preset value
+        comment: Primary brand color
       theme.brandText:
         type: color
-        comment: (override) Text color on brand-colored backgrounds
+        comment: Text on brand-colored backgrounds
       theme.accent:
         type: color
-        comment: (override) CTA and button color
+        comment: CTA and button color
       theme.accentText:
         type: color
-        comment: (override) Text on accent-colored backgrounds
-
+        comment: Text on accent-colored backgrounds
       theme.announcementBg:
         type: color
-        comment: (override) Announcement bar background — defaults to preset or brand
+        comment: Announcement bar background
       theme.announcementText:
         type: color
-        comment: (override) Announcement bar text — defaults to preset or brandText
-      theme.heroBg:
-        type: color
-        comment: (override) Hero section background — defaults to page background
-      theme.heroText:
-        type: color
-        comment: (override) Hero section text color — defaults to page text
-
-      theme.brandMuted:
-        type: color
-        comment: (advanced) Lighter companion to brand
-      theme.brandSubtle:
-        type: color
-        comment: (advanced) Even lighter brand variant
-      theme.link:
-        type: color
-        comment: (advanced) Link color — defaults to accent
-      theme.linkHover:
-        type: color
-        comment: (advanced) Link hover color
-      theme.bg:
-        type: color
-        comment: (advanced) Page background — default white
-      theme.bgSurface:
-        type: color
-        comment: (advanced) Alternating section background
-      theme.bgMuted:
-        type: color
-        comment: (advanced) Muted section background
-      theme.text:
-        type: color
-        comment: (advanced) Body text color
-      theme.textStrong:
-        type: color
-        comment: (advanced) Heading text color
-      theme.textMuted:
-        type: color
-        comment: (advanced) Secondary/muted text color
-      theme.border:
-        type: color
-        comment: (advanced) Default border color
+        comment: Announcement bar text
 
       tracking:
         type: object
@@ -237,3 +147,53 @@ data_config:
 _snippets_imports:
   hugo: false
   jekyll: false
+
+_structures:
+  theme_presets:
+    style: modal
+    values:
+      - label: Dental Blue
+        icon: palette
+        value:
+          brand: "#132a3e"
+          brandText: "#ffffff"
+          accent: "#78b843"
+          accentText: "#ffffff"
+          announcementBg: "#132a3e"
+          announcementText: "#ffffff"
+      - label: Dental Teal
+        icon: palette
+        value:
+          brand: "#132a3e"
+          brandText: "#ffffff"
+          accent: "#43BBBF"
+          accentText: "#ffffff"
+          announcementBg: "#43BBBF"
+          announcementText: "#ffffff"
+      - label: Warm Earthy
+        icon: palette
+        value:
+          brand: "#a0522d"
+          brandText: "#ffffff"
+          accent: "#7a9968"
+          accentText: "#ffffff"
+          announcementBg: "#a0522d"
+          announcementText: "#ffffff"
+      - label: Bold Red
+        icon: palette
+        value:
+          brand: "#c8102e"
+          brandText: "#ffffff"
+          accent: "#132a3e"
+          accentText: "#ffffff"
+          announcementBg: "#c8102e"
+          announcementText: "#ffffff"
+      - label: Classic Navy
+        icon: palette
+        value:
+          brand: "#0e2a47"
+          brandText: "#ffffff"
+          accent: "#c8a24b"
+          accentText: "#0e2a47"
+          announcementBg: "#0e2a47"
+          announcementText: "#c8a24b"
