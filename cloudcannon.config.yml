@@ -92,32 +92,20 @@ collections_config:
 
       typography.headingsFont:
         type: select
-        comment: Font family for headings and eyebrows.
         options:
           values:
-            - id: Poppins
-              name: Poppins — modern, rounded
-            - id: Inter
-              name: Inter — modern, tech-forward
-            - id: Montserrat
-              name: Montserrat — clean, versatile
-            - id: Nunito
-              name: Nunito — friendly, rounded
-            - id: Lato
-              name: Lato — professional, warm
-            - id: Merriweather
-              name: Merriweather — serif, traditional
-            - id: Playfair Display
-              name: Playfair Display — elegant serif, luxury
-            - id: Open Sans
-              name: Open Sans — safe workhorse
-            - id: Roboto
-              name: Roboto — clinical, neutral
-            - id: Source Sans Pro
-              name: Source Sans Pro — balanced sans
-            - id: Custom
-              name: Custom — enter font name manually
-
+            - Poppins
+            - Inter
+            - Montserrat
+            - Nunito
+            - Lato
+            - Merriweather
+            - Playfair Display
+            - Open Sans
+            - Roboto
+            - Source Sans Pro
+            - Custom
+            
       typography.headingsFontCustom:
         type: text
         comment: (only used if Custom above) Exact Google Fonts name — check fonts.google.com to verify spelling.
