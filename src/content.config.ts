@@ -171,7 +171,6 @@ const clientCollection = defineCollection({
 export const collections = {
   pages: pagesCollection,
   client: clientCollection,
-  themePresets: themePresetsCollection,
 };
 
 export type ClientConfig = z.output<typeof clientSchema>;
