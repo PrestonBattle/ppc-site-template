@@ -74,7 +74,6 @@ const themePresetsCollection = defineCollection({
 /** Derive a tel: link from a display phone number ("(847) 455-8383" -> "tel:+18474558383"). */
 function toTelLink(phone: string): string {
   const digits = phone.replace(/\D/g, "");
-
   return digits.length === 10 ? `tel:+1${digits}` : `tel:+${digits}`;
 }
 
@@ -190,15 +189,15 @@ const clientSchema = z
       })
       .default({}),
 
-    /* --- Tracking (all optional — anything left blank is simply not loaded) --- */
+    /* --- Tracking (all optional — anything left blank/null is simply not loaded) --- */
     tracking: z
       .object({
         /** GA4 Measurement ID, e.g. "G-XXXXXXXXXX" */
-        ga4MeasurementId: z.string().optional(),
+        ga4MeasurementId: z.string().nullable().optional(),
         /** Simplifi advertiser GUID, e.g. "d0839950-0d38-0137-dfb5-06a9ed4ca31b" */
-        simplifiId: z.string().optional(),
+        simplifiId: z.string().nullable().optional(),
         /** CallTrackingMetrics account ID, e.g. "256838" */
-        ctmAccountId: z.string().optional(),
+        ctmAccountId: z.string().nullable().optional(),
         /** Fire click events on tel: links and booking buttons (needs GA4). */
         trackConversions: z.boolean().default(true),
       })
