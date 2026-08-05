@@ -84,7 +84,99 @@ collections_config:
       theme.announcementText:
         type: color
         comment: Announcement bar text
+      typography:
+        type: object
+        comment: Pick a preset, or set individual fonts and sizes.
+        options:
+          structures: _structures.typography_presets
 
+      typography.headingsFont:
+        type: select
+        comment: Font family for headings and eyebrows.
+        options:
+          values:
+            - id: Poppins
+              name: Poppins — modern, rounded
+            - id: Inter
+              name: Inter — modern, tech-forward
+            - id: Montserrat
+              name: Montserrat — clean, versatile
+            - id: Nunito
+              name: Nunito — friendly, rounded
+            - id: Lato
+              name: Lato — professional, warm
+            - id: Merriweather
+              name: Merriweather — serif, traditional
+            - id: Playfair Display
+              name: Playfair Display — elegant serif, luxury
+            - id: Open Sans
+              name: Open Sans — safe workhorse
+            - id: Roboto
+              name: Roboto — clinical, neutral
+            - id: Source Sans Pro
+              name: Source Sans Pro — balanced sans
+            - id: Custom
+              name: Custom — enter font name manually
+
+      typography.headingsFontCustom:
+        type: text
+        comment: (only used if Custom above) Exact Google Fonts name — check fonts.google.com to verify spelling.
+
+      typography.bodyFont:
+        type: select
+        comment: Font family for body text and inputs.
+        options:
+          values:
+            - id: Poppins
+              name: Poppins — modern, rounded
+            - id: Inter
+              name: Inter — modern, tech-forward
+            - id: Montserrat
+              name: Montserrat — clean, versatile
+            - id: Nunito
+              name: Nunito — friendly, rounded
+            - id: Lato
+              name: Lato — professional, warm
+            - id: Merriweather
+              name: Merriweather — serif, traditional
+            - id: Playfair Display
+              name: Playfair Display — elegant serif, luxury
+            - id: Open Sans
+              name: Open Sans — safe workhorse
+            - id: Roboto
+              name: Roboto — clinical, neutral
+            - id: Source Sans Pro
+              name: Source Sans Pro — balanced sans
+            - id: Custom
+              name: Custom — enter font name manually
+
+      typography.bodyFontCustom:
+        type: text
+        comment: (only used if Custom above) Exact Google Fonts name.
+
+      typography.baseSize:
+        type: select
+        comment: Overall text size baseline.
+        options:
+          values:
+            - id: sm
+              name: Small
+            - id: md
+              name: Medium (default)
+            - id: lg
+              name: Large
+
+      typography.headingScale:
+        type: select
+        comment: Ratio between heading sizes.
+        options:
+          values:
+            - id: compact
+              name: Compact — subtle hierarchy
+            - id: balanced
+              name: Balanced — typical PPC feel
+            - id: dramatic
+              name: Dramatic — big statement heros
       tracking:
         type: object
         options:
@@ -197,3 +289,61 @@ _structures:
           accentText: "#0e2a47"
           announcementBg: "#0e2a47"
           announcementText: "#c8a24b"
+  typography_presets:
+    style: modal
+    values:
+      - label: Modern Clean
+        icon: text_fields
+        value:
+          headingsFont: Inter
+          headingsFontCustom: ""
+          bodyFont: Inter
+          bodyFontCustom: ""
+          baseSize: md
+          headingScale: balanced
+      - label: Warm Professional
+        icon: text_fields
+        value:
+          headingsFont: Merriweather
+          headingsFontCustom: ""
+          bodyFont: Lato
+          bodyFontCustom: ""
+          baseSize: md
+          headingScale: balanced
+      - label: Rounded Friendly
+        icon: text_fields
+        value:
+          headingsFont: Nunito
+          headingsFontCustom: ""
+          bodyFont: Open Sans
+          bodyFontCustom: ""
+          baseSize: md
+          headingScale: compact
+      - label: Bold Modern
+        icon: text_fields
+        value:
+          headingsFont: Poppins
+          headingsFontCustom: ""
+          bodyFont: Poppins
+          bodyFontCustom: ""
+          baseSize: md
+          headingScale: dramatic
+      - label: Luxury Serif
+        icon: text_fields
+        value:
+          headingsFont: Playfair Display
+          headingsFontCustom: ""
+          bodyFont: Source Sans Pro
+          bodyFontCustom: ""
+          baseSize: md
+          headingScale: dramatic
+      - label: Clinical Neutral
+        icon: text_fields
+        value:
+          headingsFont: Roboto
+          headingsFontCustom: ""
+          bodyFont: Roboto
+          bodyFontCustom: ""
+          baseSize: md
+          headingScale: compact
+          

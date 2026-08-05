@@ -1,6 +1,23 @@
 [data-theme="default"] {
   color-scheme: light;
 
+  /* ============ FONTS ============ */
+  --font-body:            var(--ppc-font-body, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell, "Helvetica Neue", sans-serif);
+  --font-headings:        var(--ppc-font-headings, var(--font-body));
+
+  /* ============ FONT SIZE SCALE ============
+   * --font-size-md is the "base" size; heading scale multiplies heading sizes */
+  --font-size-md:                var(--ppc-base-size, 1rem);
+  --font-size-heading-scale:     var(--ppc-heading-scale, 1.25);
+  --font-size-heading-xs:        calc(1.125rem * var(--font-size-heading-scale));
+  --font-size-heading-sm:        calc(1.375rem * var(--font-size-heading-scale));
+  --font-size-heading-md:        calc(1.75rem  * var(--font-size-heading-scale));
+  --font-size-heading-lg:        calc(2.25rem  * var(--font-size-heading-scale));
+  --font-size-heading-xl:        calc(2.875rem * var(--font-size-heading-scale));
+  --font-size-heading-2xl:       calc(3.75rem  * var(--font-size-heading-scale));
+  --font-size-heading-3xl:       calc(4.625rem * var(--font-size-heading-scale));
+  --font-size-heading-4xl:       calc(5.5rem   * var(--font-size-heading-scale));
+
   /* ============ BRAND ============ */
   --color-brand:          var(--ppc-brand, #1a3a5c);
   --color-brand-muted:    var(--ppc-brand-muted, #2a5282);
@@ -9,6 +26,7 @@
   --color-text-on-brand:  var(--ppc-brand-text, #ffffff);
   --color-accent:         var(--ppc-accent, #78b843);
   --color-text-on-accent: var(--ppc-accent-text, #ffffff);
+
   /* ============ LINKS ============ */
   --color-link:           var(--ppc-link, var(--ppc-accent, #1a3a5c));
   --color-link-hover:     var(--ppc-link-hover, var(--ppc-brand, #2a5282));

@@ -1,5 +1,6 @@
 ---
 import StructuredData from "@components/utils/StructuredData.astro";
+import { getEntry } from "astro:content";
 import seoData from "@data/seo.json";
 import "@styles/style.pcss";
 import { SEO } from "astro-seo";
@@ -17,6 +18,21 @@ const props = Astro.props;
 const formattedTitle = seoData.titleFormat.replace("{title}", props.title);
 const pageDescription = props.description || seoData.description;
 const pageImage = props.image || seoData.logoSource;
+
+const clientEntry = await getEntry("client", "client");
+const typography = clientEntry?.data?.typography;
+
+const headingsFont = typography?.headingsFont === "Custom"
+  ? typography?.headingsFontCustom
+  : typography?.headingsFont;
+const bodyFont = typography?.bodyFont === "Custom"
+  ? typography?.bodyFontCustom
+  : typography?.bodyFont;
+
+const fonts = [...new Set([headingsFont, bodyFont])].filter(Boolean) as string[];
+const fontsUrl = fonts.length > 0
+  ? `https://fonts.googleapis.com/css2?${fonts.map(f => `family=${encodeURIComponent(f)}:wght@400;600;700`).join("&")}&display=swap&subset=latin`
+  : null;
 ---
 
 <!doctype html>

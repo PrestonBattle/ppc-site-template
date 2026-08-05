@@ -36,7 +36,15 @@ theme:
   announcementBg: "#0e2a47"
   announcementText: "#c8a24b"
 
-
+# --- Typography --------------------------------------------------------------
+typography:
+  headingsFont: Poppins
+  headingsFontCustom: ""
+  bodyFont: Poppins
+  bodyFontCustom: ""
+  baseSize: md         # sm | md | lg
+  headingScale: balanced   # compact | balanced | dramatic
+  
 footer:
   layout: logo-info-map
   showMap: true

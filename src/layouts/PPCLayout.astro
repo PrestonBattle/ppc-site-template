@@ -21,6 +21,17 @@ if (!clientEntry) {
 }
 const client = clientEntry.data;
 const { theme, header, footer, cta, tracking } = client;
+const t = client.typography ?? {};
+
+const headingsFontName = t.headingsFont === "Custom"
+  ? t.headingsFontCustom
+  : t.headingsFont;
+const bodyFontName = t.bodyFont === "Custom"
+  ? t.bodyFontCustom
+  : t.bodyFont;
+
+const baseSizeMap = { sm: "0.9375rem", md: "1rem", lg: "1.125rem" };
+const headingScaleMap = { compact: "1.15", balanced: "1.25", dramatic: "1.4" };
 
 // Every theme field is optional. Values that aren't set simply don't inject
 // a CSS variable, and the theme file's fallback kicks in.
@@ -54,6 +65,10 @@ const varMap: Record<string, string | undefined> = {
   "--ppc-btn-bg":           theme.bookBtnBg ?? theme.accent,
   "--ppc-btn-text":         theme.bookBtnText ?? theme.accentText,
   "--ppc-phone-color":      theme.phoneColor ?? theme.accent,
+  "--ppc-font-headings": headingsFontName ? `"${headingsFontName}", sans-serif` : undefined,
+  "--ppc-font-body": bodyFontName ? `"${bodyFontName}", sans-serif` : undefined,
+  "--ppc-base-size": t.baseSize ? baseSizeMap[t.baseSize as keyof typeof baseSizeMap] : undefined,
+  "--ppc-heading-scale": t.headingScale ? headingScaleMap[t.headingScale as keyof typeof headingScaleMap] : undefined,
 };
 
 const cssVars = Object.entries(varMap)

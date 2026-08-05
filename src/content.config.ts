@@ -111,6 +111,20 @@ const clientSchema = z
         phoneColor: hexColor.optional(),
       })
       .default({}),
+      
+      /* --- Typography ---
+     * Fonts come from the curated list, or "Custom" + Google Fonts name.
+     * Presets pair heading + body fonts sensibly. */
+    typography: z
+      .object({
+        headingsFont: z.string().default("Poppins"),
+        headingsFontCustom: z.string().optional(),
+        bodyFont: z.string().default("Poppins"),
+        bodyFontCustom: z.string().optional(),
+        baseSize: z.enum(["sm", "md", "lg"]).default("md"),
+        headingScale: z.enum(["compact", "balanced", "dramatic"]).default("balanced"),
+      })
+      .default({}),
 
     /* --- Footer --- */
     footer: z
