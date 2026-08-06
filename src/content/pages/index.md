@@ -30,14 +30,14 @@ pageSections:
         size: md
     reverse: false
     colorScheme: default
-    backgroundColor: '#0e0e0e'
+    backgroundColor: '#2d2727'
   - _component: page-sections/features/feature-grid
     eyebrow: Why Choose Us
     heading: 3 Great Reasons to Choose Us
     subtext: ''
     gap: ''
     minItemWidth: 280
-    maxItemWidth: 360
+    maxItemWidth: 361
     features:
       - _component: page-sections/features/feature-grid/feature-item
         title: New Patient Special
@@ -47,21 +47,21 @@ pageSections:
         iconName: bolt
         iconColor: blue
       - _component: page-sections/features/feature-grid/feature-item
-        title: Comprehensive Exam and X-Rays
-        description: >-
-          Thorough evaluation of your teeth, gums, and jaw using the latest
-          digital technology.
-        iconName: cube
-        iconColor: green
-      - _component: page-sections/features/feature-grid/feature-item
         title: Flexible Scheduling
         description: >-
           Early morning, evening, and same-day appointments available to fit
           your busy schedule.
         iconName: paint-brush
         iconColor: yellow
+      - _component: page-sections/features/feature-grid/feature-item
+        title: Comprehensive Exam and X-Rays
+        description: >-
+          Thorough evaluation of your teeth, gums, and jaw using the latest
+          digital technology.
+        iconName: cube
+        iconColor: green
     colorScheme: default
-    backgroundColor: surface
+    backgroundColor: '#000000'
     align: center
   - _component: page-sections/features/feature-split
     eyebrow: Your First Visit
