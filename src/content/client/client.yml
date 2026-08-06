@@ -24,40 +24,31 @@ header:
     - Announcement 3 is shorter
     - Announcement 4 is fine
   bookBtnText: Schedule Online
-
-# --- Theme -------------------------------------------------------------------
-# Colors that drive the entire site. In CloudCannon, pick a preset from the
-# structures dropdown to load a curated palette, or edit individual colors.
 theme:
-  brand: "#0e2a47"
-  brandText: "#ffffff"
-  accent: "#c8a24b"
-  accentText: "#0e2a47"
-  announcementBg: "#0e2a47"
-  announcementText: "#c8a24b"
-
-# --- Typography --------------------------------------------------------------
+  brand: '#0e2a47'
+  brandText: '#ffffff'
+  accent: '#c8a24b'
+  accentText: '#0e2a47'
+  announcementBg: '#0e2a47'
+  announcementText: '#c8a24b'
 typography:
-  headingsFont: Poppins
-  headingsFontCustom: ""
-  bodyFont: Poppins
-  bodyFontCustom: ""
-  baseSize: md         # sm | md | lg
-  headingScale: balanced   # compact | balanced | dramatic
-  
+  headingsFont: Merriweather
+  headingsFontCustom: ''
+  bodyFont: Nunito
+  bodyFontCustom: ''
+  baseSize: md
+  headingScale: balanced
 footer:
   layout: logo-info-map
   showMap: true
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
-
 cta:
   stickyBar:
     enabled: true
     callText: Call Now
     bookText: Book Online
-
 tracking:
-  ga4MeasurementId: null
-  simplifiId: null
-  ctmAccountId: null
+  ga4MeasurementId:
+  simplifiId:
+  ctmAccountId:
   trackConversions: true
