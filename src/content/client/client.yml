@@ -32,14 +32,14 @@ theme:
   announcementBg: '#3183d8'
   announcementText: '#6c00ff'
 typography:
-  headingsFont: Playfair Display
-  headingsFontCustom: ''
-  bodyFont: Merriweather
+  headingsFont: Lato
+  headingsFontCustom:
+  bodyFont: Montserrat
   bodyFontCustom: ''
-  baseSize: md
-  headingScale: dramatic
+  baseSize: lg
+  headingScale: balanced
 footer:
-  layout: logo-info-map
+  layout: info-logo-map
   showMap: true
   disclaimer: Offers cannot be combined. Terms and conditions apply. New patients only.
 cta:
