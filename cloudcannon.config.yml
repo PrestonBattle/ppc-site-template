@@ -84,36 +84,12 @@ collections_config:
       theme.announcementText:
         type: color
         comment: Announcement bar text
-      typography:
-        type: object
-        comment: Pick a preset, or set individual fonts and sizes.
-        options:
-          structures: _structures.typography_presets
 
       typography.headingsFont:
         type: select
+        comment: Font family for headings and eyebrows.
         options:
-          values:
-            - Poppins
-            - Inter
-            - Montserrat
-            - Nunito
-            - Lato
-            - Merriweather
-            - Playfair Display
-            - Open Sans
-            - Roboto
-            - Source Sans Pro
-            - Custom
-            
-      typography.headingsFontCustom:
-        type: text
-        comment: (only used if Custom above) Exact Google Fonts name — check fonts.google.com to verify spelling.
-
-      typography.bodyFont:
-        type: select
-        comment: Font family for body text and inputs.
-        options:
+          value_key: id
           values:
             - id: Poppins
               name: Poppins — modern, rounded
@@ -136,48 +112,70 @@ collections_config:
             - id: Source Sans Pro
               name: Source Sans Pro — balanced sans
             - id: Custom
-              name: Custom — enter font name manually
+              name: Custom — enter a Google Font name manually
+
+      typography.headingsFontCustom:
+        type: text
+        comment: "Only used if Headings Font is Custom. Enter the exact Google Fonts name — check fonts.google.com to verify spelling."
+
+      typography.bodyFont:
+        type: select
+        comment: Font family for body text and inputs.
+        options:
+          value_key: id
+          values:
+            - id: Poppins
+              name: Poppins — modern, rounded
+            - id: Inter
+              name: Inter — modern, tech-forward
+            - id: Montserrat
+              name: Montserrat — clean, versatile
+            - id: Nunito
+              name: Nunito — friendly, rounded
+            - id: Lato
+              name: Lato — professional, warm
+            - id: Merriweather
+              name: Merriweather — serif, traditional
+            - id: Playfair Display
+              name: Playfair Display — elegant serif, luxury
+            - id: Open Sans
+              name: Open Sans — safe workhorse
+            - id: Roboto
+              name: Roboto — clinical, neutral
+            - id: Source Sans Pro
+              name: Source Sans Pro — balanced sans
+            - id: Custom
+              name: Custom — enter a Google Font name manually
 
       typography.bodyFontCustom:
         type: text
-        comment: (only used if Custom above) Exact Google Fonts name.
+        comment: "Only used if Body Font is Custom. Enter the exact Google Fonts name."
 
       typography.baseSize:
         type: select
-        comment: Overall text size baseline.
+        comment: Overall text size — affects body copy and spacing.
         options:
+          value_key: id
           values:
             - id: sm
-              name: Small
+              name: Small — compact, information-dense
             - id: md
-              name: Medium (default)
+              name: Medium — default, comfortable reading
             - id: lg
-              name: Large
+              name: Large — accessible, easy-to-scan
 
       typography.headingScale:
         type: select
-        comment: Ratio between heading sizes.
+        comment: Controls how dramatically headings differ in size.
         options:
+          value_key: id
           values:
             - id: compact
-              name: Compact — subtle hierarchy
+              name: Compact — subtle hierarchy, information-dense
             - id: balanced
-              name: Balanced — typical PPC feel
+              name: Balanced — typical PPC feel (default)
             - id: dramatic
-              name: Dramatic — big statement heros
-      tracking:
-        type: object
-        options:
-          subtype: object
-          groups:
-            - heading: Analytics IDs
-              inputs:
-                - ga4MeasurementId
-                - simplifiId
-                - ctmAccountId
-            - heading: Options
-              inputs:
-                - trackConversions
+              name: Dramatic — big statement hero headings
 
       tracking.ga4MeasurementId:
         type: text
@@ -277,6 +275,7 @@ _structures:
           accentText: "#0e2a47"
           announcementBg: "#0e2a47"
           announcementText: "#c8a24b"
+
   typography_presets:
     style: modal
     values:
@@ -334,4 +333,3 @@ _structures:
           bodyFontCustom: ""
           baseSize: md
           headingScale: compact
-          
