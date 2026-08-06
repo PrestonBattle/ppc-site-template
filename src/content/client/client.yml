@@ -34,7 +34,7 @@ theme:
 typography:
   headingsFont: Playfair Display
   headingsFontCustom: ''
-  bodyFont: Playfair Display
+  bodyFont: Merriweather
   bodyFontCustom: ''
   baseSize: md
   headingScale: dramatic
