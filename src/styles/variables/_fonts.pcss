@@ -1,8 +1,8 @@
 :where(:root) {
   --font-body:
-    -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell,
-    "Helvetica Neue", sans-serif;
-  --font-headings: var(--font-body);
+    var(--ppc-font-body, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, oxygen, ubuntu, cantarell,
+    "Helvetica Neue", sans-serif);
+  --font-headings: var(--ppc-font-headings, var(--font-body));
 
   --font-mono: menlo, consolas, monaco, adwaita mono, liberation mono, lucida console, monospace;
 
