@@ -51,4 +51,4 @@ tracking:
   ga4MeasurementId:
   simplifiId:
   ctmAccountId:
-  trackConversions: true
+  trackConversions: false
