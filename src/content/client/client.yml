@@ -32,12 +32,12 @@ theme:
   announcementBg: '#0e2a47'
   announcementText: '#c8a24b'
 typography:
-  headingsFont: Merriweather
+  headingsFont: Playfair Display
   headingsFontCustom: ''
-  bodyFont: Nunito
+  bodyFont: Playfair Display
   bodyFontCustom: ''
   baseSize: md
-  headingScale: balanced
+  headingScale: dramatic
 footer:
   layout: logo-info-map
   showMap: true
