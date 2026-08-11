@@ -25,16 +25,16 @@ header:
     - Announcement 4 is fine
   bookBtnText: Schedule Online
 theme:
-  brand: '#0e2a47'
+  brand: '#53ec55'
   brandText: '#ffffff'
-  accent: '#c8a24b'
-  accentText: '#0e2a47'
-  announcementBg: '#0e2a47'
-  announcementText: '#c8a24b'
+  accent: '#0088a1'
+  accentText: '#c4e1ff'
+  announcementBg: '#f01a0f'
+  announcementText: '#966800'
 typography:
-  headingsFont: Inter
+  headingsFont: Lato
   headingsFontCustom:
-  bodyFont: Poppins
+  bodyFont: Inter
   bodyFontCustom:
   baseSize: md
   headingScale: dramatic
