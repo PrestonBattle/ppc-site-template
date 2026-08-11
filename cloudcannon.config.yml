@@ -310,9 +310,9 @@ _structures:
         icon: text_fields
         value:
           headingsFont: Poppins
-          headingsFontCustom: ""
+          headingsFontCustom: null
           bodyFont: Poppins
-          bodyFontCustom: ""
+          bodyFontCustom: null
           baseSize: md
           headingScale: dramatic
       - label: Luxury Serif

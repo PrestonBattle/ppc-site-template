@@ -70,7 +70,6 @@ const clientSchema = z
       })
       .default({}),
 
-    /* --- Theme (CSS variables injected site-wide) --- */
     /* --- Theme (CSS variables injected site-wide) ---
      * Writers pick a preset in CloudCannon which fills in these values;
      * they can then tweak any individual color independently. */
@@ -111,16 +110,16 @@ const clientSchema = z
         phoneColor: hexColor.optional(),
       })
       .default({}),
-      
-      /* --- Typography ---
+
+    /* --- Typography ---
      * Fonts come from the curated list, or "Custom" + Google Fonts name.
      * Presets pair heading + body fonts sensibly. */
     typography: z
       .object({
         headingsFont: z.string().default("Poppins"),
-        headingsFontCustom: z.string().optional(),
+        headingsFontCustom: z.string().nullable().optional(),
         bodyFont: z.string().default("Poppins"),
-        bodyFontCustom: z.string().optional(),
+        bodyFontCustom: z.string().nullable().optional(),
         baseSize: z.enum(["sm", "md", "lg"]).default("md"),
         headingScale: z.enum(["compact", "balanced", "dramatic"]).default("balanced"),
       })

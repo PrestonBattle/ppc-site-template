@@ -33,9 +33,9 @@ theme:
   announcementText: '#c8a24b'
 typography:
   headingsFont: Playfair Display
-  headingsFontCustom: ''
+  headingsFontCustom: null
   bodyFont: Merriweather
-  bodyFontCustom: ''
+  bodyFontCustom: null
   baseSize: md
   headingScale: dramatic
 footer:
@@ -48,7 +48,7 @@ cta:
     callText: Call Now
     bookText: Book Online
 tracking:
-  ga4MeasurementId:
-  simplifiId:
-  ctmAccountId:
+  ga4MeasurementId: null
+  simplifiId: null
+  ctmAccountId: null
   trackConversions: true
