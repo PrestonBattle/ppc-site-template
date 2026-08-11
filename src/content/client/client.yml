@@ -32,10 +32,10 @@ theme:
   announcementBg: '#0e2a47'
   announcementText: '#c8a24b'
 typography:
-  headingsFont: Playfair Display
-  headingsFontCustom: null
-  bodyFont: Merriweather
-  bodyFontCustom: null
+  headingsFont: Inter
+  headingsFontCustom:
+  bodyFont: Poppins
+  bodyFontCustom:
   baseSize: md
   headingScale: dramatic
 footer:
@@ -48,7 +48,7 @@ cta:
     callText: Call Now
     bookText: Book Online
 tracking:
-  ga4MeasurementId: null
-  simplifiId: null
-  ctmAccountId: null
+  ga4MeasurementId:
+  simplifiId:
+  ctmAccountId:
   trackConversions: true
